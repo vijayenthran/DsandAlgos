@@ -6,12 +6,16 @@ Question
 -  Find the nodes whose neighbours are null. // This is nothing but print the rightView in the tree.
 -  Add all the node values from the binary search tree.
 -  Print the node value along with its level in a binary tree.
+-  Pre-Order, PostOrder, In order traversal.
 
 // -- To Continue -- Pointer
--  Pre-Order, PostOrder, In order traversal.
 -  Print the left view of a Binary Search Tree.
 -  Print the top view of a Binary Search Tree.
 -  Print the Bottom View of a Binary Search Tree.
+-  Check if a tree is a Binary Search Tree.
+-  Check if the tree is a balanced tree.
+-  Traverse Breadth First in a binary Search Tree.
+
 */
 
 /*
@@ -148,6 +152,39 @@ BinarySearchTree.prototype.printRightView = function () {
 
     traversal(this);
     return rightView;
+};
+
+
+/*
+Pseudo Code.
+
+- Logic Choose to traverse from the left hand side of the tree.
+- keep track of the indexes and the levels.
+- The levels are the indexes here.
+- As you go one level deeper increase the levels.
+- If you cannot go both the left or right then during the recursion cycle decrease the level.
+*/
+
+BinarySearchTree.prototype.printLeftView = function (){
+    let leftViewArr = [];
+    let level = 0;
+
+    function traversal(root){
+        if(!leftViewArr[level]){
+            leftViewArr[level] = root.value
+        }
+        if(root.left !== null){
+            level = level +1;
+            traversal(root.left);
+        }
+        if(root.right !== null){
+            level = level +1;
+            traversal(root.right);
+        }
+        level = level-1;
+    }
+    traversal(this);
+    return leftViewArr;
 };
 
 /*
