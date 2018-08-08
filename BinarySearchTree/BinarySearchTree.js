@@ -1,5 +1,7 @@
 'use strict';
 
+const queue = require('../Queue/Queue');
+
 /*
 Question
 -  Implement a general Binary Search Tree that can insert Values
@@ -7,15 +9,18 @@ Question
 -  Add all the node values from the binary search tree.
 -  Print the node value along with its level in a binary tree.
 -  Pre-Order, PostOrder, In order traversal.
+-  Print the left view of a Binary Search Tree.
 
 // -- To Continue -- Pointer
--  Print the left view of a Binary Search Tree.
+- Level Order Traversal.
+-  Vertical Order Traversal Of a Binary Search Tree.
 -  Print the top view of a Binary Search Tree.
 -  Print the Bottom View of a Binary Search Tree.
 -  Check if a tree is a Binary Search Tree.
 -  Check if the tree is a balanced tree.
 -  Traverse Breadth First in a binary Search Tree.
-
+-  Traverse Depth First in a Binary Search Tree.
+-  Check if a Value is contained in a Binary Search Tree.
 */
 
 /*
@@ -31,6 +36,13 @@ test.insert(10);
 test.insert(6);
 test.insert(5);
 
+
+
+
+- More data // Unbalanced BST.
+test.insert(8);
+test.insert(9);
+test.insert(7);
 */
 
 
@@ -410,3 +422,9 @@ BinarySearchTree.prototype.postOrderTraversalAddFunc = function () {
     traversal(this);
     return postOrderTraversal;
 };
+
+
+/*
+Level Order Traversal.
+Pseudocode
+*/
