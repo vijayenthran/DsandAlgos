@@ -91,6 +91,7 @@ Peseudocode
 BinarySearchTree.prototype.printLevels = function () {
     let levelsAndValues = [];
     let level = 0;
+
     function traversal(root) {
         levelsAndValues.push({rootValue: root.value, level: level});
         if (root.left !== null) {
@@ -103,6 +104,7 @@ BinarySearchTree.prototype.printLevels = function () {
         }
         level = level - 1;
     }
+
     traversal(this);
     return levelsAndValues;
 };
@@ -126,23 +128,24 @@ PseudoCode.
 
 BinarySearchTree.prototype.printRightView = function () {
     let rightView = [];
-    let level=0;
+    let level = 0;
 
-    function traversal(root){
-        if(!rightView[level]){
+    function traversal(root) {
+        if (!rightView[level]) {
             rightView[level] = root.value;
         }
-        if(root.right !== null){
-            level = level +1;
+        if (root.right !== null) {
+            level = level + 1;
             traversal(root.right)
         }
 
-        if(root.left !== null){
-            level = level +1;
+        if (root.left !== null) {
+            level = level + 1;
             traversal(root.left)
         }
-        level = level-1;
+        level = level - 1;
     }
+
     traversal(this);
     return rightView;
 };
@@ -159,17 +162,214 @@ PseudoCode.
 - return the sum at the end.
 */
 
-BinarySearchTree.prototype.addValues = function ()  {
-  let sum = 0;
-  function traversal(root){
-      sum = sum + root.value;
-      if(root.left !== null){
-          traversal(root.left);
-      }
-      if(root.right !== null){
-          traversal(root.right);
-      }
-  }
-  traversal(this);
-  return sum;
+BinarySearchTree.prototype.addValues = function () {
+    let sum = 0;
+
+    function traversal(root) {
+        sum = sum + root.value;
+        if (root.left !== null) {
+            traversal(root.left);
+        }
+        if (root.right !== null) {
+            traversal(root.right);
+        }
+    }
+
+    traversal(this);
+    return sum;
+};
+
+
+/*
+In order Traversal -- This is depth first traversal of a binary search tree.
+
+Pseudo code
+- This is to visit the left first.
+- Then Print the Value.
+- Then visit the right
+
+https://www.geeksforgeeks.org/tree-traversals-inorder-preorder-and-postorder/
+*/
+
+
+BinarySearchTree.prototype.inOrderTraversalNormal = function () {
+    if (this.left !== null) {
+        this.left.inOrderTraversal();
+    }
+    console.log(this.value);
+    if (this.right !== null) {
+        this.right.inOrderTraversal();
+    }
+};
+
+/*
+Pseudo code
+- This is to visit the left first.
+- Then Print the Value.
+- Then visit the right
+- This in order traversal is used to return the traversed value in an array.
+- It uses the help of a traversal function. This function will be used for recursion
+
+
+https://www.geeksforgeeks.org/tree-traversals-inorder-preorder-and-postorder/
+*/
+
+BinarySearchTree.prototype.inOrderTraversalExtFunc = function () {
+    let inOrderValueArr = [];
+
+    // This is the helper function that is used for traversal.
+    function traversal(root) {
+        if (root.left !== null) {
+            traversal(root.left);
+        }
+        inOrderValueArr.push(root.value);
+        if (root.right !== null) {
+            traversal(root.right);
+        }
+    }
+
+    traversal(this);
+    return inOrderValueArr;
+};
+
+BinarySearchTree.prototype.inOrderTraversalNormal = function () {
+    if (this.left !== null) {
+        this.left.inOrderTraversal();
+    }
+    console.log(this.value);
+    if (this.right !== null) {
+        this.right.inOrderTraversal();
+    }
+};
+
+/*
+Pseudo code
+- This is to visit the left first.
+- Then Print the Value.
+- Then visit the right
+- This in order traversal is used to return the traversed value in an array.
+- It uses the help of a traversal function. This function will be used for recursion
+
+
+https://www.geeksforgeeks.org/tree-traversals-inorder-preorder-and-postorder/
+*/
+
+BinarySearchTree.prototype.inOrderTraversalAddFunc = function () {
+    let inOrderValueArr = [];
+
+    // This is the helper function that is used for traversal.
+    function traversal(root) {
+        if (root.left !== null) {
+            traversal(root.left);
+        }
+        inOrderValueArr.push(root.value);
+        if (root.right !== null) {
+            traversal(root.right);
+        }
+    }
+
+    traversal(this);
+    return inOrderValueArr;
+};
+
+/*
+Pseudo code
+- Print the Value.
+- visit the left.
+- Then visit the right.
+
+https://www.geeksforgeeks.org/tree-traversals-inorder-preorder-and-postorder/
+*/
+
+BinarySearchTree.prototype.preOrderTraversalNormal = function () {
+    console.log(this.value);
+    if (this.left !== null) {
+        this.left.inOrderTraversal();
+    }
+    if (this.right !== null) {
+        this.right.inOrderTraversal();
+    }
+};
+
+
+/*
+Pseudo code
+- Print the Value.
+- visit the left.
+- Then visit the right.
+- This in order traversal is used to return the traversed value in an array.
+- It uses the help of a traversal function. This function will be used for recursion
+
+
+https://www.geeksforgeeks.org/tree-traversals-inorder-preorder-and-postorder/
+*/
+
+BinarySearchTree.prototype.preOrderTraversalAddFunc = function () {
+    let preOrderValueArr = [];
+
+    // This is the helper function that is used for traversal.
+    function traversal(root) {
+        preOrderValueArr.push(root.value);
+        if (root.left !== null) {
+            traversal(root.left);
+        }
+        if (root.right !== null) {
+            traversal(root.right);
+        }
+    }
+
+    traversal(this);
+    return preOrderValueArr;
+};
+
+
+
+/*
+Pseudo code
+- visit the left.
+- Then visit the right.
+- Print the Value.
+
+https://www.geeksforgeeks.org/tree-traversals-inorder-preorder-and-postorder/
+*/
+
+BinarySearchTree.prototype.postOrderTraversalNormal = function () {
+    if (this.left !== null) {
+        this.left.inOrderTraversal();
+    }
+    if (this.right !== null) {
+        this.right.inOrderTraversal();
+    }
+    console.log(this.value);
+};
+
+
+/*
+Pseudo code
+- visit the left.
+- Then visit the right.
+- Print the Value.
+- This in order traversal is used to return the traversed value in an array.
+- It uses the help of a traversal function. This function will be used for recursion
+
+
+https://www.geeksforgeeks.org/tree-traversals-inorder-preorder-and-postorder/
+*/
+
+BinarySearchTree.prototype.postOrderTraversalAddFunc = function () {
+    let postOrderTraversal = [];
+
+    // This is the helper function that is used for traversal.
+    function traversal(root) {
+        if (root.left !== null) {
+            traversal(root.left);
+        }
+        if (root.right !== null) {
+            traversal(root.right);
+        }
+        postOrderTraversal.push(root.value);
+    }
+
+    traversal(this);
+    return postOrderTraversal;
 };
