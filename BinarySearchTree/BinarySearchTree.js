@@ -13,7 +13,7 @@ Question
 
 // -- To Continue -- Pointer
 - Level Order Traversal.
--  Vertical Order Traversal Of a Binary Search Tree.
+-  Vertical Order Traversal Of a Binary Search Tree. - Print Nodes With Vertical Distance BeTween Them
 -  Print the top view of a Binary Search Tree.
 -  Print the Bottom View of a Binary Search Tree.
 -  Check if a tree is a Binary Search Tree.
@@ -39,7 +39,7 @@ test.insert(5);
 
 
 
-- More data // Unbalanced BST.
+//- More data // Unbalanced BST.
 test.insert(8);
 test.insert(9);
 test.insert(7);
@@ -177,24 +177,25 @@ Pseudo Code.
 - If you cannot go both the left or right then during the recursion cycle decrease the level.
 */
 
-BinarySearchTree.prototype.printLeftView = function (){
+BinarySearchTree.prototype.printLeftView = function () {
     let leftViewArr = [];
     let level = 0;
 
-    function traversal(root){
-        if(!leftViewArr[level]){
+    function traversal(root) {
+        if (!leftViewArr[level]) {
             leftViewArr[level] = root.value
         }
-        if(root.left !== null){
-            level = level +1;
+        if (root.left !== null) {
+            level = level + 1;
             traversal(root.left);
         }
-        if(root.right !== null){
-            level = level +1;
+        if (root.right !== null) {
+            level = level + 1;
             traversal(root.right);
         }
-        level = level-1;
+        level = level - 1;
     }
+
     traversal(this);
     return leftViewArr;
 };
@@ -372,7 +373,6 @@ BinarySearchTree.prototype.preOrderTraversalAddFunc = function () {
 };
 
 
-
 /*
 Pseudo code
 - visit the left.
@@ -423,8 +423,71 @@ BinarySearchTree.prototype.postOrderTraversalAddFunc = function () {
     return postOrderTraversal;
 };
 
+/*
+Vertical Distance
+
+Pseudocode
+
+- Vertical Distance is used to calculate the vertical Position of the node from the root.
+- We first assign the vertical Distance as o.
+- We start from the root.
+- Then when we traverse left we then decrement the vertical distance by 1.
+- When We traverse right we increment the Vertical distance by 1
+*/
+BinarySearchTree.prototype.verticalDistance = function () {
+    let arr = [];
+    let verticalDistance = 0;
+
+    function traversal(root) {
+        arr.push({value: root.value, verticalDistance: verticalDistance});
+        if (root.left !== null) {
+            verticalDistance -= 1;
+            traversal(root.left);
+        }
+        if (root.right !== null) {
+            verticalDistance += 1;
+            traversal(root.right);
+        }
+    }
+
+    traversal(this);
+    return arr;
+};
 
 /*
 Level Order Traversal.
+
 Pseudocode
+
+- This is to print the Tree nodes in level. Starting from the root.
+- This is the breadth first traversal of a tree.
+- This needs a Queue.
+- Select the root of the queue and assign it to the temp variable.
+- Loop until the temp variable is null.
+- Push the left and the right nodes to the queue.
+- Then Pop the first element in the queue and push the left and right nodes to the queue.
+- Repeat this step until the leaf node is reached.
 */
+
+BinarySearchTree.prototype.breadthFirstTraversal = function () {
+    let traversalArr = [];
+    debugger;
+    // let queue = new queue.QueueUsingArr();
+    let queue = new QueueUsingArr();
+    let tempnode = this;
+
+    while(tempnode){
+        if(tempnode.left !== null){
+            queue.enqueue(tempnode.left);
+        }
+        if(tempnode.right !== null){
+            queue.enqueue(tempnode.right);
+        }
+        traversalArr.push(tempnode.value);
+        tempnode = queue.dequeue();
+        if(!tempnode){
+            tempnode = null;
+        }
+    }
+    return traversalArr;
+};

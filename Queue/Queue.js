@@ -11,7 +11,8 @@ QueueUsingArr.prototype.enqueue = function(value){
 
 
 QueueUsingArr.prototype.dequeue = function () {
-    this.data.splice(0,1);
+    let splicedValue = this.data.splice(0,1);
+    return splicedValue[0];
 };
 
 
