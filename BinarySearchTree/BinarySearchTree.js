@@ -10,16 +10,17 @@ Question
 -  Print the node value along with its level in a binary tree.
 -  Pre-Order, PostOrder, In order traversal.
 -  Print the left view of a Binary Search Tree.
+-  Level Order Traversal.
+-  Vertical Order Traversal Of a Binary Search Tree. - Print Nodes With Vertical Distance BeTween Them
+-  Traverse Breadth First in a binary Search Tree. -- Needs to have a Queue
+-  Traverse Depth First in a Binary Search Tree. inorder, pre order, postorder traversal --- Verify this question.
+
 
 // -- To Continue -- Pointer
-- Level Order Traversal.
--  Vertical Order Traversal Of a Binary Search Tree. - Print Nodes With Vertical Distance BeTween Them
 -  Print the top view of a Binary Search Tree.
--  Print the Bottom View of a Binary Search Tree.
+-  Print the Bottom View of a Binary Search Tree. -- Ask Question if there is this view.If so then the bottom view will be the entire tree.
 -  Check if a tree is a Binary Search Tree.
 -  Check if the tree is a balanced tree.
--  Traverse Breadth First in a binary Search Tree.
--  Traverse Depth First in a Binary Search Tree.
 -  Check if a Value is contained in a Binary Search Tree.
 */
 
@@ -433,24 +434,26 @@ Pseudocode
 - We start from the root.
 - Then when we traverse left we then decrement the vertical distance by 1.
 - When We traverse right we increment the Vertical distance by 1
+
+Note:
+We have to some how form a closure variable here.
+- We cannot assign the value of vertical distance inside the traversal function.
+- Because then during every recursion it will be reset.
+- But at the same time we want to maintain the state of the variable . So we pass it through the parameter.
 */
 BinarySearchTree.prototype.verticalDistance = function () {
     let arr = [];
-    let verticalDistance = 0;
-
-    function traversal(root) {
+    function traversal(root, verticalDistance) {
         arr.push({value: root.value, verticalDistance: verticalDistance});
         if (root.left !== null) {
-            verticalDistance -= 1;
-            traversal(root.left);
+            traversal(root.left,  verticalDistance-1);
         }
         if (root.right !== null) {
-            verticalDistance += 1;
-            traversal(root.right);
+            traversal(root.right, verticalDistance+1);
         }
     }
-
-    traversal(this);
+    // Set the initial Vertical Distance as 0
+    traversal(this, 0);
     return arr;
 };
 
@@ -471,23 +474,78 @@ Pseudocode
 
 BinarySearchTree.prototype.breadthFirstTraversal = function () {
     let traversalArr = [];
-    debugger;
     // let queue = new queue.QueueUsingArr();
     let queue = new QueueUsingArr();
     let tempnode = this;
 
-    while(tempnode){
-        if(tempnode.left !== null){
+    while (tempnode) {
+        if (tempnode.left !== null) {
             queue.enqueue(tempnode.left);
         }
-        if(tempnode.right !== null){
+        if (tempnode.right !== null) {
             queue.enqueue(tempnode.right);
         }
         traversalArr.push(tempnode.value);
         tempnode = queue.dequeue();
-        if(!tempnode){
-            tempnode = null;
-        }
+        // if (!tempnode) {
+        //     tempnode = null;
+        // }
     }
     return traversalArr;
+};
+
+
+/*
+
+Print the Top view of a Binary Tree.
+
+- We use Object instead of an array because. We cannot have negative indexes in an array.
+- In objects we can have negative index and there fore we use objects.
+- For Top view We will not recurse the function instead we will just use Breadth First Search.
+
+*/
+BinarySearchTree.prototype.topView = function () {
+
+    let topViewObj = {};
+    let verticalDistance = 0;
+    let tempnode = this;
+    let queue = new QueueUsingArr();
+    debugger;
+    while (tempnode) {
+        if(tempnode === this){
+           topViewObj[`${verticalDistance}`] = {Vd:verticalDistance, node:tempnode.value};
+        }else{
+            topViewObj[`${verticalDistance}`] = {Vd:tempnode.Vd, node:tempnode.value};
+        }
+        if(tempnode.left !== null){
+            verticalDistance -=1;
+            queue.enqueue(tempnode.left);
+        }
+        if(tempnode.right !== null){
+            verticalDistance +=1;
+            queue.enqueue(tempnode.right);
+        }
+        tempnode = queue.dequeue();
+    }
+    //     if(tempnode === this){
+    //         if (Object.keys(topViewObj).indexOf(`${VerticalDistance}`) < 0) {
+    //             topViewObj[`${VerticalDistance}`] = tempnode.value;
+    //         }
+    //     }else{
+    //         if (Object.keys(topViewObj).indexOf(`${tempnode.VD}`) < 0) {
+    //             topViewObj[`${VerticalDistance}`] = tempnode.value;
+    //         }
+    //     }
+    //     if (tempnode.left !== null || tempnode.node.left !== null) {
+    //         VerticalDistance -= 1;
+    //         queue.enqueue({VD : VerticalDistance, node:tempnode.left});
+    //     }
+    //     if (tempnode.right !== null || tempnode.node.right !== null) {
+    //         VerticalDistance += 1;
+    //         queue.enqueue({VD : VerticalDistance, node:tempnode.right});
+    //     }
+    //
+    //     tempnode = queue.dequeue();
+    // }
+    return topViewObj;
 };
