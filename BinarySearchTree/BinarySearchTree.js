@@ -17,11 +17,14 @@ Question
 
 
 // -- To Continue -- Pointer
+- Vertical Order Traversal
 -  Print the top view of a Binary Search Tree.
 -  Print the Bottom View of a Binary Search Tree. -- Ask Question if there is this view.If so then the bottom view will be the entire tree.
 -  Check if a tree is a Binary Search Tree.
 -  Check if the tree is a balanced tree.
 -  Check if a Value is contained in a Binary Search Tree.
+- Lowest Common Ancestor.
+- Print Neighbours.
 */
 
 /*
@@ -505,11 +508,33 @@ Print the Top view of a Binary Tree.
 
 */
 BinarySearchTree.prototype.topView = function () {
-
     let topViewObj = {};
     let verticalDistance = 0;
     let tempnode = this;
     let queue = new QueueUsingArr();
+
+    while (tempnode) {
+        if (tempnode.left !== null) {
+            queue.enqueue(tempnode.left);
+        }
+        if (tempnode.right !== null) {
+            queue.enqueue(tempnode.right);
+        }
+        tempnode = queue.dequeue();
+    }
+
+
+}
+
+
+
+
+
+
+
+
+
+
     debugger;
     while (tempnode) {
         if(tempnode === this){
