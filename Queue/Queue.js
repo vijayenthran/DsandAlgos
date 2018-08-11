@@ -17,7 +17,7 @@ QueueUsingArr.prototype.dequeue = function () {
 
 
 QueueUsingArr.prototype.length = function () {
-   this.data.length;
+   return this.data.length;
 };
 
 

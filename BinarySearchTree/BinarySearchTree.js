@@ -40,10 +40,14 @@ test.insert(10);
 test.insert(6);
 test.insert(5);
 
-
+test.insert(15);
+test.insert(8);
+test.insert(9);
+test.insert(7);
 
 
 //- More data // Unbalanced BST.
+test.insert(15);
 test.insert(8);
 test.insert(9);
 test.insert(7);
@@ -446,15 +450,17 @@ We have to some how form a closure variable here.
 */
 BinarySearchTree.prototype.verticalDistance = function () {
     let arr = [];
+
     function traversal(root, verticalDistance) {
         arr.push({value: root.value, verticalDistance: verticalDistance});
         if (root.left !== null) {
-            traversal(root.left,  verticalDistance-1);
+            traversal(root.left, verticalDistance - 1);
         }
         if (root.right !== null) {
-            traversal(root.right, verticalDistance+1);
+            traversal(root.right, verticalDistance + 1);
         }
     }
+
     // Set the initial Vertical Distance as 0
     traversal(this, 0);
     return arr;
@@ -497,21 +503,60 @@ BinarySearchTree.prototype.breadthFirstTraversal = function () {
     return traversalArr;
 };
 
+/*
+Pseudocode
 
-BinarySearchTree.prototype.verticalTraversal = function () {
-    let traversalHash = {};
+- Start from the root node.
+- we have to travel Breadth first traversal here.
+- We cannot recurse. So we have to maintain two different conditions.
+- One for the root node and other for the non root nodes.
+- We have to get the vertical distance somehow in a closure form.
+- If we see the vertical distance calculation for each nodes.
+- We pass the vd of the current node to the recursive function.
+- But here there is no recursion. Therefore we have to maintain the value of the vertical distance by storing it some where.
+
+
+*/
+
+BinarySearchTree.prototype.verticalTraversalUsingBFS = function () {
+    let traversalHash = [];
     let queue = new QueueUsingArr();
-    let tempnode= this;
-    let level =0;
-    while(tempnode) {
-        if(tempnode.left !== null) {
-            queue.enqueue(tempnode.left);
-        }
-        if(tempnode.right !==null){
-            queue.enqueue(tempnode.right);
+    let tempnode = this;
+    let level = 0;
+    while (tempnode) {
+        if (tempnode === this) {
+            traversalHash.push({vd: level, value: tempnode.value});
+            if (tempnode.left !== null) {
+                queue.enqueue({
+                    vd: level - 1,
+                    node: tempnode.left
+                });
+            }
+            if (tempnode.right !== null) {
+                queue.enqueue({
+                    vd: level + 1,
+                    node: tempnode.right
+                });
+            }
+        } else {
+            traversalHash.push({vd: tempnode.vd, value: tempnode.node.value});
+            if (tempnode.node.left !== null) {
+                queue.enqueue({
+                    vd: tempnode.vd - 1,
+                    node: tempnode.node.left
+                });
+            }
+
+            if (tempnode.node.right !== null) {
+                queue.enqueue({
+                    vd: tempnode.vd + 1,
+                    node: tempnode.node.right
+                });
+            }
         }
         tempnode = queue.dequeue();
     }
+    return traversalHash;
 };
 
 /*
@@ -524,69 +569,46 @@ Print the Top view of a Binary Tree.
 
 */
 BinarySearchTree.prototype.topView = function () {
+    debugger;
     let topViewObj = {};
+    let topViewArr = [];
     let verticalDistance = 0;
     let tempnode = this;
     let queue = new QueueUsingArr();
 
     while (tempnode) {
-        if (tempnode.left !== null) {
-            queue.enqueue(tempnode.left);
-        }
-        if (tempnode.right !== null) {
-            queue.enqueue(tempnode.right);
-        }
-        tempnode = queue.dequeue();
-    }
-
-
-}
-
-
-
-
-
-
-
-
-
-
-    debugger;
-    while (tempnode) {
-        if(tempnode === this){
-           topViewObj[`${verticalDistance}`] = {Vd:verticalDistance, node:tempnode.value};
-        }else{
-            topViewObj[`${verticalDistance}`] = {Vd:tempnode.Vd, node:tempnode.value};
-        }
-        if(tempnode.left !== null){
-            verticalDistance -=1;
-            queue.enqueue(tempnode.left);
-        }
-        if(tempnode.right !== null){
-            verticalDistance +=1;
-            queue.enqueue(tempnode.right);
+        if (tempnode === this) {
+            // Note the the keys of the objects are strings. Therefore you should be passing the strings. refer indexOf(`${verticalDistance}`)
+            if (Object.keys(topViewObj).indexOf(`${verticalDistance}`) < 0) {
+                topViewObj[`${verticalDistance}`] = [tempnode.value];
+                topViewArr.push(tempnode.value);
+            } else {
+                topViewObj[`${verticalDistance}`].push(tempnode.value);
+            }
+            if (tempnode.left !== null) {
+                queue.enqueue({vd: verticalDistance - 1, node: tempnode.left});
+            }
+            if (tempnode.right !== null) {
+                queue.enqueue({vd: verticalDistance + 1, node: tempnode.right});
+            }
+        } else {
+            if (Object.keys(topViewObj).indexOf(`${tempnode.vd}`) < 0) {
+                topViewObj[`${tempnode.vd}`] = [tempnode.node];
+                topViewArr.push(tempnode.node.value);
+            } else {
+                topViewObj[`${tempnode.vd}`].push(tempnode.node);
+            }
+            if (tempnode.node.left !== null) {
+                queue.enqueue({vd: tempnode.vd - 1, node: tempnode.node.left});
+            }
+            if (tempnode.node.right !== null) {
+                queue.enqueue({vd: tempnode.vd + 1, node: tempnode.node.right});
+            }
         }
         tempnode = queue.dequeue();
     }
-    //     if(tempnode === this){
-    //         if (Object.keys(topViewObj).indexOf(`${VerticalDistance}`) < 0) {
-    //             topViewObj[`${VerticalDistance}`] = tempnode.value;
-    //         }
-    //     }else{
-    //         if (Object.keys(topViewObj).indexOf(`${tempnode.VD}`) < 0) {
-    //             topViewObj[`${VerticalDistance}`] = tempnode.value;
-    //         }
-    //     }
-    //     if (tempnode.left !== null || tempnode.node.left !== null) {
-    //         VerticalDistance -= 1;
-    //         queue.enqueue({VD : VerticalDistance, node:tempnode.left});
-    //     }
-    //     if (tempnode.right !== null || tempnode.node.right !== null) {
-    //         VerticalDistance += 1;
-    //         queue.enqueue({VD : VerticalDistance, node:tempnode.right});
-    //     }
-    //
-    //     tempnode = queue.dequeue();
-    // }
-    return topViewObj;
+    return {
+        topviewObj: topViewObj,
+        topViewArr: topViewArr
+    };
 };
