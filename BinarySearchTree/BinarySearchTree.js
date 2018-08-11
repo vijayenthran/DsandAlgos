@@ -14,11 +14,10 @@ Question
 -  Vertical Order Traversal Of a Binary Search Tree. - Print Nodes With Vertical Distance BeTween Them
 -  Traverse Breadth First in a binary Search Tree. -- Needs to have a Queue
 -  Traverse Depth First in a Binary Search Tree. inorder, pre order, postorder traversal --- Verify this question.
-
+-  Vertical Order Traversal
+-  Print the top view of a Binary Search Tree.
 
 // -- To Continue -- Pointer
-- Vertical Order Traversal
--  Print the top view of a Binary Search Tree.
 -  Print the Bottom View of a Binary Search Tree. -- Ask Question if there is this view.If so then the bottom view will be the entire tree.
 -  Check if a tree is a Binary Search Tree.
 -  Check if the tree is a balanced tree.
@@ -496,26 +495,32 @@ BinarySearchTree.prototype.breadthFirstTraversal = function () {
         }
         traversalArr.push(tempnode.value);
         tempnode = queue.dequeue();
-        // if (!tempnode) {
-        //     tempnode = null;
-        // }
     }
     return traversalArr;
 };
 
 /*
+
+Vertical Traversal using Breadth First Search
+
 Pseudocode
-
 - Start from the root node.
-- we have to travel Breadth first traversal here.
-- We cannot recurse. So we have to maintain two different conditions.
+- we have to use Breadth first traversal here.
+- We cannot recurse here since we are using Breadth First Traversal.
 - One for the root node and other for the non root nodes.
-- We have to get the vertical distance somehow in a closure form.
-- If we see the vertical distance calculation for each nodes.
-- We pass the vd of the current node to the recursive function.
-- But here there is no recursion. Therefore we have to maintain the value of the vertical distance by storing it some where.
-
-
+- We have to get the vertical distance somehow for each nodes. The vertical Distance of the parent is started as 0.
+- As we travel left we decrement the vertical distance by 1 from the current nodes parent vertical distance.
+- Similarly as we traverse right we increment the vertical distance by 1, using the current nodes parent vertical distance.
+- To get the vertical distance we cannot use the vertical distance general variable declared outside.
+- The vertical distance variable declared outside will hold true only for the root node.
+- But for the non root nodes we have to pass use the vertical distance of the current parent.
+- In order to do that. We create an object {vd: tempnode.vd, value: tempnode.node.value}
+- If there is a left we push it to the queue.
+- if there is a right we push it to the queue.
+- At the end of the while loop we dequeue from the queue.
+- we Assign the dequeued value to the temnode variable.
+- We loop util the tempnode variable holds true.
+- We return from the function once the while loop truncates.
 */
 
 BinarySearchTree.prototype.verticalTraversalUsingBFS = function () {
@@ -563,13 +568,38 @@ BinarySearchTree.prototype.verticalTraversalUsingBFS = function () {
 
 Print the Top view of a Binary Tree.
 
-- We use Object instead of an array because. We cannot have negative indexes in an array.
-- In objects we can have negative index and there fore we use objects.
-- For Top view We will not recurse the function instead we will just use Breadth First Search.
+Pseudocode
+- Start from the root node.
+- we have to use Breadth first traversal here.
+- We cannot recurse here since we are using Breadth First Traversal.
+- One for the root node and other for the non root nodes.
+- We have to get the vertical distance somehow for each nodes. The vertical Distance of the parent is started as 0.
+- As we travel left we decrement the vertical distance by 1 from the current nodes parent vertical distance.
+- Similarly as we traverse right we increment the vertical distance by 1, using the current nodes parent vertical distance.
+- To get the vertical distance we cannot use the vertical distance general variable declared outside.
+- The vertical distance variable declared outside will hold true only for the root node.
+- But for the non root nodes we have to pass use the vertical distance of the current parent.
+- In order to do that. We create an object {vd: tempnode.vd, value: tempnode.node.value}
+- If there is a left we push it to the queue.
+- if there is a right we push it to the queue.
+- At the end of the while loop we dequeue from the queue.
+- we Assign the dequeued value to the temnode variable.
+- We loop util the tempnode variable holds true.
+- We return from the function once the while loop truncates.
+
+
+The above steps are general forBFS.
+- To print the top view. we have to select the one node of each vertical distance number.
+- For example
+
+-When we run the above code.
+-topViewObj will contain an array of objects.
+- There can be two different nodes with the same Vd.
+- For top view. We select the first node for each vertical distance.
+*/
 
 */
 BinarySearchTree.prototype.topView = function () {
-
     let topViewObj = {};
     let topViewArr = [];
     let verticalDistance = 0;
@@ -581,6 +611,7 @@ BinarySearchTree.prototype.topView = function () {
             // Note the the keys of the objects are strings. Therefore you should be passing the strings. refer indexOf(`${verticalDistance}`)
             if (Object.keys(topViewObj).indexOf(`${verticalDistance}`) < 0) {
                 topViewObj[`${verticalDistance}`] = [tempnode.value];
+                // This pushes the value to the top view arr.
                 topViewArr.push(tempnode.value);
             } else {
                 topViewObj[`${verticalDistance}`].push(tempnode.value);
