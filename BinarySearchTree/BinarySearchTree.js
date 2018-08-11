@@ -569,7 +569,7 @@ Print the Top view of a Binary Tree.
 
 */
 BinarySearchTree.prototype.topView = function () {
-    debugger;
+
     let topViewObj = {};
     let topViewArr = [];
     let verticalDistance = 0;
