@@ -498,6 +498,22 @@ BinarySearchTree.prototype.breadthFirstTraversal = function () {
 };
 
 
+BinarySearchTree.prototype.verticalTraversal = function () {
+    let traversalHash = {};
+    let queue = new QueueUsingArr();
+    let tempnode= this;
+    let level =0;
+    while(tempnode) {
+        if(tempnode.left !== null) {
+            queue.enqueue(tempnode.left);
+        }
+        if(tempnode.right !==null){
+            queue.enqueue(tempnode.right);
+        }
+        tempnode = queue.dequeue();
+    }
+};
+
 /*
 
 Print the Top view of a Binary Tree.
