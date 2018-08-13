@@ -643,3 +643,38 @@ BinarySearchTree.prototype.topView = function () {
         topViewArr: topViewArr
     };
 };
+
+
+/*
+Pseudo code
+
+- Start from the root.
+- If there is left then check if the value of left is greater than the root value.
+- If so return false.
+- Similarly check if there is right and if there is a right check . check if its value is less than the root.
+- if it is return false.
+- If there is no left or right then we return null
+- Check the important if condition
+*/
+
+
+BinarySearchTree.prototype.isValidBST = function () {
+    if(this.left === null || this.right === null){
+        return true;
+    }
+    if (this.left !==null) {
+        if(this.left.value > this.value){
+            return false;
+        }
+    }
+    if (this.right !== null) {
+        if(this.right.value < this.value){
+            return false;
+        }
+    }
+    // important if condition . this is where we recurse and if anything in the previous function return false. Then we return false.
+    if (!this.left.isValidBST() || !this.right.isValidBST()) {
+        return false;
+    }
+    return true;
+};
