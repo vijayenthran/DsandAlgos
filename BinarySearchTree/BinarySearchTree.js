@@ -16,10 +16,11 @@ Question
 -  Traverse Depth First in a Binary Search Tree. inorder, pre order, postorder traversal --- Verify this question.
 -  Vertical Order Traversal
 -  Print the top view of a Binary Search Tree.
+-   Check if a tree is a Binary Search Tree.
+
 
 // -- To Continue -- Pointer
 -  Print the Bottom View of a Binary Search Tree. -- Ask Question if there is this view.If so then the bottom view will be the entire tree.
--  Check if a tree is a Binary Search Tree.
 -  Check if the tree is a balanced tree.
 -  Check if a Value is contained in a Binary Search Tree.
 - Lowest Common Ancestor.
