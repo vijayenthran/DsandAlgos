@@ -647,6 +647,8 @@ BinarySearchTree.prototype.topView = function () {
 
 
 /*
+isValidBST
+
 Pseudo code
 
 - Start from the root.
