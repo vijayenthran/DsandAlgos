@@ -16,7 +16,7 @@ Question
 -  Traverse Depth First in a Binary Search Tree. inorder, pre order, postorder traversal --- Verify this question.
 -  Vertical Order Traversal
 -  Print the top view of a Binary Search Tree.
--   Check if a tree is a Binary Search Tree.
+-  Check if a tree is a Binary Search Tree.
 
 
 // -- To Continue -- Pointer
@@ -645,6 +645,58 @@ BinarySearchTree.prototype.topView = function () {
     };
 };
 
+/*
+Vertical Order Traversal
+
+Pseudocode.
+
+- Same as top view.
+*/
+
+
+BinarySearchTree.prototype.BottomView = function () {
+    debugger;
+    let verticalTraversalArray = {};
+    let bottomView = {};
+    let verticalDistance = 0;
+    let queue = new QueueUsingArr();
+    let tempnode = this;
+    while (tempnode) {
+        if (tempnode === this) {
+            if (Object.keys(verticalTraversalArray).indexOf(`${verticalDistance}`) < 0) {
+                // This logic alone differs from that of the top view.
+                bottomView[`${verticalDistance}`] = tempnode.value;
+                verticalTraversalArray[`${verticalDistance}`] = [tempnode.value];
+            } else {
+                // This logic alone differs from that of the top view.
+                bottomView[`${verticalDistance}`] = tempnode.value;
+                verticalTraversalArray[`${verticalDistance}`].push(tempnode.value);
+            }
+            if (tempnode.left !== null) {
+                queue.enqueue({vd: verticalDistance - 1, node: tempnode.left});
+            }
+            if (tempnode.right !== null) {
+                queue.enqueue({vd: verticalDistance + 1, node: tempnode.right});
+            }
+        } else {
+            if (Object.keys(verticalTraversalArray).indexOf(`${tempnode.vd}`) < 0) {
+                bottomView[`${tempnode.vd}`] = tempnode.node.value;
+                verticalTraversalArray[`${tempnode.vd}`] = [tempnode.node.value];
+            } else {
+                bottomView[`${tempnode.vd}`] = tempnode.node.value;
+                verticalTraversalArray[`${tempnode.vd}`].push(tempnode.node.value);
+            }
+            if (tempnode.node.left !== null) {
+                queue.enqueue({vd: tempnode.vd - 1, node: tempnode.node.left});
+            }
+            if (tempnode.node.right !== null) {
+                queue.enqueue({vd: tempnode.vd + 1, node: tempnode.node.right});
+            }
+        }
+        tempnode = queue.dequeue();
+    }
+    return bottomView;
+};
 
 /*
 isValidBST
@@ -662,16 +714,16 @@ Pseudo code
 
 
 BinarySearchTree.prototype.isValidBST = function () {
-    if(this.left === null || this.right === null){
+    if (this.left === null || this.right === null) {
         return true;
     }
-    if (this.left !==null) {
-        if(this.left.value > this.value){
+    if (this.left !== null) {
+        if (this.left.value > this.value) {
             return false;
         }
     }
     if (this.right !== null) {
-        if(this.right.value < this.value){
+        if (this.right.value < this.value) {
             return false;
         }
     }
