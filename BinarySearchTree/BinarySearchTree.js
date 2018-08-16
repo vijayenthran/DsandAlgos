@@ -746,19 +746,20 @@ Pseudocode.
 */
 
 BinarySearchTree.prototype.isContained = function (value) {
-    if(value === this.value){
+    if(value === this.value) {
         return true;
-    }
-    if(this.left !== null){
-        return this.left.isContained(value);
-    }else{
-        return false;
-    }
-
-    if(this.right !== null){
-        this.right.isContained(value);
-    }else{
-        return false;
+    }else if(value < this.value){
+        if(this.left !== null){
+            return this.left.isContained(value);
+        }else{
+            return false;
+        }
+    } else if (value > this.value){
+        if(this.right !== null){
+            return this.right.isContained(value);
+        }else{
+            return false;
+        }
     }
 
     // function traversal(root) {
