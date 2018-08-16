@@ -17,14 +17,17 @@ Question
 -  Vertical Order Traversal
 -  Print the top view of a Binary Search Tree.
 -  Check if a tree is a Binary Search Tree.
-
+-  Bottom View.
 
 // -- To Continue -- Pointer
--  Print the Bottom View of a Binary Search Tree. -- Ask Question if there is this view.If so then the bottom view will be the entire tree.
+-  Print the Bottom View of a Binary Search Tree. -- Validate bottom view with various inputs.
 -  Check if the tree is a balanced tree.
 -  Check if a Value is contained in a Binary Search Tree.
 - Lowest Common Ancestor.
 - Print Neighbours.
+- Delete Minimum.
+- Delete Maximum.
+- Delete Any node in a Binary Search Tree.
 */
 
 /*
@@ -651,11 +654,12 @@ Vertical Order Traversal
 Pseudocode.
 
 - Same as top view.
+- Except one small logic change that I have indicated in the code.
+- Validate this various inputs.
 */
 
 
 BinarySearchTree.prototype.BottomView = function () {
-    debugger;
     let verticalTraversalArray = {};
     let bottomView = {};
     let verticalDistance = 0;
@@ -732,4 +736,46 @@ BinarySearchTree.prototype.isValidBST = function () {
         return false;
     }
     return true;
+};
+
+
+/*
+Is Contained.
+
+Pseudocode.
+*/
+
+BinarySearchTree.prototype.isContained = function (value) {
+    if(value === this.value){
+        return true;
+    }
+    if(this.left !== null){
+        return this.left.isContained(value);
+    }else{
+        return false;
+    }
+
+    if(this.right !== null){
+        this.right.isContained(value);
+    }else{
+        return false;
+    }
+
+    // function traversal(root) {
+    //     if(root.value === value){
+    //         return true;
+    //     }
+    //     if(root.left !== null){
+    //         return traversal(root.left);
+    //     }
+    //     if(root.right !== null){
+    //         return traversal(root.right);
+    //     }
+    // }
+    //
+    // if(!traversal(this)){
+    //     return false;
+    // }else{
+    //     return true;
+    // }
 };
