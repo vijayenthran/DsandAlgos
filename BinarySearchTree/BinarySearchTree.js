@@ -18,11 +18,12 @@ Question
 -  Print the top view of a Binary Search Tree.
 -  Check if a tree is a Binary Search Tree.
 -  Bottom View.
+-  Check if a Value is contained in a Binary Search Tree.
+
 
 // -- To Continue -- Pointer
 -  Print the Bottom View of a Binary Search Tree. -- Validate bottom view with various inputs.
 -  Check if the tree is a balanced tree.
--  Check if a Value is contained in a Binary Search Tree.
 - Lowest Common Ancestor.
 - Print Neighbours.
 - Delete Minimum.
@@ -743,12 +744,22 @@ BinarySearchTree.prototype.isValidBST = function () {
 Is Contained.
 
 Pseudocode.
+
+Handle Conditions.
+
+- when the value is less go left
+- When the value is great go right.
+- when going left if there is a node keep on traversing.
+- Similarly when going right if there is a node keep on traversing.
+
 */
 
 BinarySearchTree.prototype.isContained = function (value) {
     if(value === this.value) {
         return true;
-    }else if(value < this.value){
+    }
+
+    if(value < this.value){
         if(this.left !== null){
             return this.left.isContained(value);
         }else{
@@ -761,22 +772,8 @@ BinarySearchTree.prototype.isContained = function (value) {
             return false;
         }
     }
+};
 
-    // function traversal(root) {
-    //     if(root.value === value){
-    //         return true;
-    //     }
-    //     if(root.left !== null){
-    //         return traversal(root.left);
-    //     }
-    //     if(root.right !== null){
-    //         return traversal(root.right);
-    //     }
-    // }
-    //
-    // if(!traversal(this)){
-    //     return false;
-    // }else{
-    //     return true;
-    // }
+BinarySearchTree.prototype.isBalanced = function(){
+
 };
