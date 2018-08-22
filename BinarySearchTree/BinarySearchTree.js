@@ -779,7 +779,7 @@ BinarySearchTree.prototype.isContained = function (value) {
 /*
 
 Print left Height and right height of Each node.
-
+Useful Youtube Link https://www.youtube.com/watch?v=TWDigbwxuB4
 -check the left and the right of each node.
 -If the left is null return 0. // This is the base case
 -Similarly If the right is null return 0. // This is the base case.
