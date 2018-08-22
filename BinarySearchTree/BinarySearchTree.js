@@ -22,13 +22,16 @@ Question
 
 
 // -- To Continue -- Pointer
--  Print the Bottom View of a Binary Search Tree. -- Validate bottom view with various inputs.
+-  Print the Bottom View of a Binary Search Tree. -- Validate bottom view with various inputs.  - This is done.
 -  Check if the tree is a balanced tree.
-- Lowest Common Ancestor.
-- Print Neighbours.
-- Delete Minimum.
+-  Lowest Common Ancestor.
+-  find the Maximum height of a Binary Search Tree.
+-  Print Neighbours.
+-  You are given a binary tree and a given sum. The task is to check if there exist a subtree whose sum of all nodes is equal to the given sum.
+-  Delete Minimum.
 - Delete Maximum.
 - Delete Any node in a Binary Search Tree.
+- Check if a binary tree is subtree of another binary tree
 */
 
 /*
@@ -106,7 +109,6 @@ BinarySearchTree.prototype.insert = function (value) {
 /*Traverse through the tree and print its values along with its level
 
 Peseudocode
-
 - Start from the root.
 - The Level is initialized to Zero
 - Then as you enter through the levels. Then print the levels as well.
@@ -755,25 +757,83 @@ Handle Conditions.
 */
 
 BinarySearchTree.prototype.isContained = function (value) {
-    if(value === this.value) {
+    if (value === this.value) {
         return true;
     }
 
-    if(value < this.value){
-        if(this.left !== null){
+    if (value < this.value) {
+        if (this.left !== null) {
             return this.left.isContained(value);
-        }else{
+        } else {
             return false;
         }
-    } else if (value > this.value){
-        if(this.right !== null){
+    } else if (value > this.value) {
+        if (this.right !== null) {
             return this.right.isContained(value);
-        }else{
+        } else {
             return false;
         }
     }
 };
 
-BinarySearchTree.prototype.isBalanced = function(){
+/*
 
+Print left Height and right height of Each node.
+
+-check the left and the right of each node.
+-If the left is null return 0. // This is the base case
+-Similarly If the right is null return 0. // This is the base case.
+- Have two Variables that store the left and the right height.
+- at the end Add the maximum of left height and right height with 1.
+*/
+BinarySearchTree.prototype.printHeightEachNode = function () {
+    // base case
+    let arr =[];
+    function traverasl(root){
+        if(root === null){
+            return 0;
+        }
+        let leftHeight = traverasl(root.left);
+        let rightHeight = traverasl(root.right);
+        arr.push({node:root.value, left:leftHeight, right:rightHeight});
+        return 1 + Math.max(leftHeight,rightHeight);
+    }
+    traverasl(this);
+    return arr;
+};
+
+
+/*
+
+Print left Height and right height of Each node.
+
+Check Height Balanced.
+
+- A tree is height balanced if the left height and the right height difference is not greater than 1. for each and every node.
+- Same code as printing the left and right height of each nodes. except that if the left height or the right height === -1 then return -1
+*/
+BinarySearchTree.prototype.isBalanced = function () {
+    // base case
+    function traverasl(root){
+        if(root === null){
+            return 0;
+        }
+        let leftHeight = traverasl(root.left);
+        if(leftHeight === -1){
+            return -1;
+        }
+        let rightHeight = traverasl(root.right);
+        if(rightHeight === -1){
+            return -1;
+        }
+        if(Math.abs(leftHeight-rightHeight)>1){
+            return -1;
+        }
+        return 1 + Math.max(leftHeight,rightHeight);
+    }
+    if(traverasl(this) === -1){
+        return false;
+    }else{
+        return true;
+    }
 };
