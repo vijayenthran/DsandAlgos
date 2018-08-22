@@ -802,10 +802,8 @@ BinarySearchTree.prototype.printHeightEachNode = function () {
 };
 
 /*
-
-Print left Height and right height of Each node.
-
 Check Height Balanced.
+
 - A tree is height balanced if the left height and the right height difference is not greater than 1. for each and every node.
 - Same code as printing the left and right height of each nodes. except that if the left height or the right height === -1 then return -1
 */
