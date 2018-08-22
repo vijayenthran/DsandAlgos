@@ -20,11 +20,12 @@ Question
 -  Bottom View.
 -  Check if a Value is contained in a Binary Search Tree.
 -  Check if the tree is a balanced tree.
+-  find the Maximum depth of a Binary Search Tree.
+
 
 // -- To Continue -- Pointer
 -  Print the Bottom View of a Binary Search Tree. -- Validate bottom view with various inputs.  - This is done.
 -  Lowest Common Ancestor.
--  find the Maximum height of a Binary Search Tree.
 -  Print Neighbours.
 -  You are given a binary tree and a given sum. The task is to check if there exist a subtree whose sum of all nodes is equal to the given sum.
 -  Delete Minimum.
