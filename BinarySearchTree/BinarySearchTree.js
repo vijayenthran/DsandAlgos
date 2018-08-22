@@ -787,16 +787,18 @@ Useful Youtube Link https://www.youtube.com/watch?v=TWDigbwxuB4
 */
 BinarySearchTree.prototype.printHeightEachNode = function () {
     // base case
-    let arr =[];
-    function traverasl(root){
-        if(root === null){
+    let arr = [];
+
+    function traverasl(root) {
+        if (root === null) {
             return 0;
         }
         let leftHeight = traverasl(root.left);
         let rightHeight = traverasl(root.right);
-        arr.push({node:root.value, left:leftHeight, right:rightHeight});
-        return 1 + Math.max(leftHeight,rightHeight);
+        arr.push({node: root.value, left: leftHeight, right: rightHeight});
+        return 1 + Math.max(leftHeight, rightHeight);
     }
+
     traverasl(this);
     return arr;
 };
@@ -809,26 +811,46 @@ Check Height Balanced.
 */
 BinarySearchTree.prototype.isBalanced = function () {
     // base case
-    function traverasl(root){
-        if(root === null){
+    function traverasl(root) {
+        if (root === null) {
             return 0;
         }
         let leftHeight = traverasl(root.left);
-        if(leftHeight === -1){
+        if (leftHeight === -1) {
             return -1;
         }
         let rightHeight = traverasl(root.right);
-        if(rightHeight === -1){
+        if (rightHeight === -1) {
             return -1;
         }
-        if(Math.abs(leftHeight-rightHeight)>1){
+        if (Math.abs(leftHeight - rightHeight) > 1) {
             return -1;
         }
-        return 1 + Math.max(leftHeight,rightHeight);
+        return 1 + Math.max(leftHeight, rightHeight);
     }
-    if(traverasl(this) === -1){
+
+    if (traverasl(this) === -1) {
         return false;
-    }else{
+    } else {
         return true;
     }
+};
+
+/*
+
+Print Maximum Depth.
+
+- Same code as print the max depth of each node. at the end return the maximum height of the tree.
+*/
+
+BinarySearchTree.prototype.MaxDepth = function () {
+    function traversal(root){
+        if(root === null){
+            return 0;
+        }
+        let leftHeight = traversal(root.left);
+        let rightHeight = traversal(root.right);
+        return 1 + Math.max(leftHeight, rightHeight);
+    }
+    return traversal(this) - 1;
 };
