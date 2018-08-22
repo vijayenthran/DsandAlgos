@@ -19,11 +19,10 @@ Question
 -  Check if a tree is a Binary Search Tree.
 -  Bottom View.
 -  Check if a Value is contained in a Binary Search Tree.
-
+-  Check if the tree is a balanced tree.
 
 // -- To Continue -- Pointer
 -  Print the Bottom View of a Binary Search Tree. -- Validate bottom view with various inputs.  - This is done.
--  Check if the tree is a balanced tree.
 -  Lowest Common Ancestor.
 -  find the Maximum height of a Binary Search Tree.
 -  Print Neighbours.
@@ -802,13 +801,11 @@ BinarySearchTree.prototype.printHeightEachNode = function () {
     return arr;
 };
 
-
 /*
 
 Print left Height and right height of Each node.
 
 Check Height Balanced.
-
 - A tree is height balanced if the left height and the right height difference is not greater than 1. for each and every node.
 - Same code as printing the left and right height of each nodes. except that if the left height or the right height === -1 then return -1
 */
