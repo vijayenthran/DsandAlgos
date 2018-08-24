@@ -21,7 +21,7 @@ Question
 -  Check if a Value is contained in a Binary Search Tree.
 -  Check if the tree is a balanced tree.
 -  find the Maximum depth of a Binary Search Tree.
-
+-  Check if two nodes are cousins.
 
 // -- To Continue -- Pointer
 -  Print the Bottom View of a Binary Search Tree. -- Validate bottom view with various inputs.  - This is done.
@@ -845,13 +845,60 @@ Print Maximum Depth.
 */
 
 BinarySearchTree.prototype.MaxDepth = function () {
-    function traversal(root){
-        if(root === null){
+    function traversal(root) {
+        if (root === null) {
             return 0;
         }
         let leftHeight = traversal(root.left);
         let rightHeight = traversal(root.right);
         return 1 + Math.max(leftHeight, rightHeight);
     }
+
     return traversal(this) - 1;
 };
+
+/*
+
+To Check Two Nodes are cousins of each other.
+
+They should be in the same level and they should have different parents.
+*/
+
+BinarySearchTree.prototype.isCousins = function (value1, value2) {
+    let level = 0;
+    var storage = [];
+    if (!value1 || !value2) {
+        return 'Either Value 1 or Value 2 is not defined.';
+    }
+
+    function traversal(root, parent) {
+        if (root.left !== null) {
+            level = level + 1;
+            traversal(root.left, root);
+        }
+        if (root.right !== null) {
+            level = level + 1;
+            traversal(root.right, root);
+        }
+        if (root.value === value1 || root.value === value2) {
+            storage.push({node: root.value, level: level, parent: parent});
+        }
+        level = level - 1;
+    }
+
+    traversal(this, this);
+    if (storage[0] && storage[1]) {
+        if (storage[0].level === storage[1].level) {
+            if(storage[0].parent !== storage[1].parent){
+                return true;
+            }else{
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }else{
+        return 'Something Wrong with your function please check that.';
+    }
+};
+
