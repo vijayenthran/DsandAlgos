@@ -26,7 +26,13 @@ Question
 // -- To Continue -- Pointer
 -  Print the Bottom View of a Binary Search Tree. -- Validate bottom view with various inputs.  - This is done.
 -  Lowest Common Ancestor.
+-  Print Ancestors of a node.
 -  Print Neighbours.
+-  Print all nodes that don’t have sibling
+-  Find k-th smallest element in BST
+-  print all the ancestors.
+-  in order successor and Predecessor.
+- Count the number of Binary Search Trees That can be formed.
 -  You are given a binary tree and a given sum. The task is to check if there exist a subtree whose sum of all nodes is equal to the given sum.
 -  Delete Minimum.
 - Delete Maximum.
@@ -764,13 +770,13 @@ BinarySearchTree.prototype.isContained = function (value) {
     if (value < this.value) {
         if (this.left !== null) {
             return this.left.isContained(value);
-        } else {
+        }else{
             return false;
         }
     } else if (value > this.value) {
         if (this.right !== null) {
             return this.right.isContained(value);
-        } else {
+        }else{
             return false;
         }
     }
@@ -902,3 +908,49 @@ BinarySearchTree.prototype.isCousins = function (value1, value2) {
     }
 };
 
+
+// //https://www.youtube.com/watch?v=F-_1sbnPbWQ&t=288s
+// BinarySearchTree.prototype.LowestCommonAncestor = function (value1, value2){
+//     let leftTraversal;
+//     let rightTraversal;
+//     let lca;
+//     debugger;
+//     function traversal(root){
+//         if(root === null){
+//             return null;
+//         }
+//         if(root.value === value1 || root.value === value2){
+//             return root;
+//         }
+//         leftTraversal= traversal(root.left);
+//         rightTraversal=traversal(root.right);
+//         if(leftTraversal !==null && rightTraversal !==null){
+//             return root;
+//         } else {
+//             return leftTraversal ? leftTraversal :rightTraversal;
+//         }
+//     }
+//     return traversal(this);
+// };
+
+
+BinarySearchTree.prototype.LowestCommonAncestorBST = function (value1, value2){
+    function traversal(root){
+        if(root.value >)
+    }
+    return traversal(this);
+};
+
+
+
+var lowestCommonAncestor = function(root, p, q) {
+    if (root.val > p.val && root.val > q.val) {
+        return lowestCommonAncestor(root.left, p, q);
+    }
+    else if (root.val < p.val && root.val < q.val) {
+        return lowestCommonAncestor(root.right, p, q);
+    }
+    else {
+        return root;
+    }
+}

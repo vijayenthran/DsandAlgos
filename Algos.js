@@ -885,7 +885,7 @@ function mergeSortRoutine(leftptrArr, rightptrArr) {
     return mergedList;
 }
 
-mergeSort([3, 27, 38, 43, 9, 10, 82])
+mergeSort([3, 27, 38, 43, 9, 10, 82]);
 
 
 
@@ -1540,7 +1540,7 @@ BinarySearchTree.prototype.addAll = function (){
     }
     traversal(this);
     return sum;
-}
+};
 
 
 function Queue(){
@@ -1726,3 +1726,55 @@ const hasingExercise = (function(){
     }
 })();
 
+has loop
+
+function LinkedList () {
+    this.head = null;
+}
+
+LinkedList.prototype.hasLoop = function () {
+    var p1, p2;
+    p1 = this.head;
+    p2 = this.head;
+
+    // basic condition for loop to exist
+    while (p2.next.next) {
+        // console.log('P1 = %d, P2 = %d', p1.data, p2.data);
+        p1 = p1.next;
+        p2 = p2.next.next;
+
+        if (p1 == p2) {
+            return true;
+        }
+    }
+    return false;
+};
+
+
+var Stack1 = [];
+var Stack2 = [];
+
+// implement enqueue method by using only stacks
+// and the push and pop functions
+function Enqueue(element) {
+    Stack1.push(element);
+}
+
+// implement dequeue method by pushing all elements
+// from stack 1 into stack 2, which reverses the order
+// and then popping from stack 2
+function Dequeue() {
+    if (Stack2.length === 0) {
+        if (Stack1.length === 0) { return 'Cannot dequeue because queue is empty'; }
+        while (Stack1.length > 0) {
+            var p = Stack1.pop();
+            Stack2.push(p);
+        }
+    }
+    return Stack2.pop();
+}
+
+Enqueue('a');
+Enqueue('b');
+Enqueue('c');
+Dequeue();
