@@ -26,11 +26,11 @@ myList.findNode(value)
 * Optimization:
 Say we have a linked list that has 100 items and we want to add an item to the very end. How would you do that with your current implementation? How can you modify the data structure to add an item to the end in constant time?
 myList.appendToTail(value)
-
 => new tail node
 add a new tail node at the end of the list with the associated value passed in
-myList.removeTail()
 
+
+myList.removeTail()
 => removed tail node
 remove the tail node from the list
 
@@ -156,11 +156,23 @@ SinglyLinkedList.prototype.appendToTail = function (value) {
     if (!value) {
         throw new Error('value is missing');
     }
+    let newNode = new Node(value);
+    this.tail.next = newNode;
+    this.tail = new Node;
+};
+
+SinglyLinkedList.prototype.removeTail = function () {
     let node = this.head;
-    while (node.next !== null) {
-        if (node.value === value) {
-            return node;
+
+    function traversal(node) {
+        if (node === this.head && node.next === null) {
+            throw new Error('There is only the head node present and it cannot be removed');
         }
-        node = node.next;
+        if (node.next.next === null) {
+            node.next = null;
+        }else{
+            traversal(node.next);
+        }
     }
+    traversal(node);
 };
