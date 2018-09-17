@@ -60,6 +60,7 @@ function SinglyLinkedList(value) {
     if (!this.head) {
         this.head = new Node(value);
     }
+    this.tail = this.head;
 }
 
 SinglyLinkedList.prototype.forEach = function (callbackfn) {
@@ -139,6 +140,19 @@ SinglyLinkedList.prototype.removeHead = function () {
 };
 
 SinglyLinkedList.prototype.findNode = function (value) {
+    if (!value) {
+        throw new Error('value is missing');
+    }
+    let node = this.head;
+    while (node.next !== null) {
+        if (node.value === value) {
+            return node;
+        }
+        node = node.next;
+    }
+};
+
+SinglyLinkedList.prototype.appendToTail = function (value) {
     if (!value) {
         throw new Error('value is missing');
     }

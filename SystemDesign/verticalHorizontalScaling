@@ -1,0 +1,29 @@
+Reference Video for UnderstandingScalability :
+https://www.youtube.com/watch?v=xpDnVSmNFX0&index=2&list=PLMCXHnjXnTnvo6alSjVkgxV-VH6EPyvoX
+
+Data Transaction Link
+https://javarevisited.blogspot.com/2011/11/database-transaction-tutorial-example.html
+
+
+There are two types of scalability.
+
+Vertical Scaling and Horizontal Scaling.
+
+Vertical Scaling:
+- In this analogy we increase the computers computation
+power. But we have one large physical unit.
+- We dont need load balancer.
+- This uses inter process communication.
+- Here since we have only one machine data is consistent.
+- Hardware limit.
+
+Horizontal Scaling:
+- In this analogy we have several small units.
+The requests will scale across the machines that
+are provided.
+- We need load balancer.
+- To talk between the units they use remote procedure call.
+- Data inconsistency. because During transactions if wee
+need to rollback. We have to know the systems in which the
+process has taken place and we need to redo that.
+- Scales Well as user increases.

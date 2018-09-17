@@ -1,0 +1,11 @@
+System Design Introduction.
+
+- features
+- Define Apis.
+- Availability.
+- Latency Performance
+- Scalability.
+- Durability.
+- Class Diagram.
+- Security & Privacy.
+- Cost Effective.

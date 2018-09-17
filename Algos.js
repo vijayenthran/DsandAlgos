@@ -3,58 +3,58 @@
 // Swap elements in an array without using temp variable. 
 
 
-function Queue(maxCapacity){
+function Queue(maxCapacity) {
     this.data = {};
     this.currentPointer = 0;
     this.updatedPointer = 0;
     this.maximumCapacity = maxCapacity || 3;
 }
 
-Queue.prototype.enqueue = function(element){
+Queue.prototype.enqueue = function (element) {
     if (this.count() >= this.maximumCapacity) {
         return 'The maximum size of the Queue Has been achieved. Cannot add more items to the Queue.'
     }
     this.data[this.updatedPointer] = element;
-    this.updatedPointer ++;
+    this.updatedPointer++;
     return this.data;
 }
 
-Queue.prototype.dequeue = function (){
-    if(this.count() === 0){
+Queue.prototype.dequeue = function () {
+    if (this.count() === 0) {
         return 'There are no elements to remove from the Queue. Please add elements to the Queue.'
     }
     delete this.data[this.currentPointer];
-    this.currentPointer ++;
+    this.currentPointer++;
     return this.data;
 }
 
-Queue.prototype.peek = function (){
-    if (this.count() === 0){
+Queue.prototype.peek = function () {
+    if (this.count() === 0) {
         return `There are no more items to see in the Queue`;
     }
-    return this.data[this.updatedPointer-1];
+    return this.data[this.updatedPointer - 1];
 }
 
-Queue.prototype.count = function (){
-    return this.updatedPointer-1 - this.currentPointer;
+Queue.prototype.count = function () {
+    return this.updatedPointer - 1 - this.currentPointer;
 }
 
 // Time Complexity of this find is O(1);
-Queue.prototype.contains = function (value){
-    for(var prop in this.data){
-        if (this.data.hasOwnProperty(prop) && this.data[prop] === value){
+Queue.prototype.contains = function (value) {
+    for (var prop in this.data) {
+        if (this.data.hasOwnProperty(prop) && this.data[prop] === value) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
 }
 
-Queue.prototype.until = function (value){
-    let hopsCount=0;
-    for(var prop in this.data){
+Queue.prototype.until = function (value) {
+    let hopsCount = 0;
+    for (var prop in this.data) {
         if (this.data.hasOwnProperty(prop) && this.data[prop] !== value) {
-            hopsCount+=1;
+            hopsCount += 1;
         }
     }
     return hopsCount;
@@ -62,7 +62,7 @@ Queue.prototype.until = function (value){
 
 // Function Stack // find the minimum element in the stack
 
-function Stack () {
+function Stack() {
 
 }
 
@@ -70,15 +70,15 @@ Stack.prototype.push = function () {
 
 }
 
-Stack.prototype.pull = function(){
+Stack.prototype.pull = function () {
 
 }
 
-Stack.prototype.size = function (){
+Stack.prototype.size = function () {
 
 }
 
-Stack.prototype.getMinimum = function (){
+Stack.prototype.getMinimum = function () {
 
 }
 
@@ -94,12 +94,12 @@ function Stack() {
 
 // return the length of the stack.
 Stack.prototype.push = function (element) {
-    if(typeof element !== 'number'){
+    if (typeof element !== 'number') {
         return 'The element is not supported in this stack. Please try only numbered elements.';
     }
-    if (!this.minumumElement){
+    if (!this.minumumElement) {
         this.minumumElement = element;
-    }else if(this.minumumElement > element){
+    } else if (this.minumumElement > element) {
         this.minumumElement = element;
     }
     this.data[++this.currentPointer] = element;
@@ -108,7 +108,7 @@ Stack.prototype.push = function (element) {
 }
 
 Stack.prototype.pop = function () {
-    if(this.currentPointer <= 0){
+    if (this.currentPointer <= 0) {
         return `There are no elements to pop from the stack. Please push elements first`;
     }
     delete this.data[this.currentPointer];
@@ -126,7 +126,7 @@ Stack.prototype.getMinimum = function () {
 
 // stack check Brackets 
 
-function Stack(){
+function Stack() {
     this.data = [];
 }
 
@@ -137,19 +137,22 @@ Stack.prototype.push = function (element) {
 
 
 Stack.prototype.pop = function () {
-    if(this.size() === 0){
+    if (this.size() === 0) {
         return `There are no elements to remove from the stack array. Please insert before removal.`
     }
-    this.data = this.data.slice(0, this.size()-1);
+    this.data = this.data.slice(0, this.size() - 1);
     return this.data;
 }
 
-Stack.prototype.size = function (){
+Stack.prototype.size = function () {
     return this.data.length;
 }
 
-let string = string.split('').filter(element => element);
-function wrapper(string){
+let string = string.split('').filter(element = > element
+)
+;
+
+function wrapper(string) {
     for (let i = 0; i < string.length; i++) {
         if (string[i] === '(') {
             test.push(string[i]);
@@ -159,7 +162,7 @@ function wrapper(string){
             return false;
         }
     }
-    if(test.size() === 0){
+    if (test.size() === 0) {
         return true;
     }
     return false;
@@ -173,18 +176,18 @@ function wrapper(string){
 
 // Norman Factorial
 
-function factorial(num){
+function factorial(num) {
     let n;
-    if(num === 1 || num === 0){
+    if (num === 1 || num === 0) {
         return 1;
     }
 
-    for(let i=num; i>1; i--){
-        if(!n){
+    for (let i = num; i > 1; i--) {
+        if (!n) {
             n = i;
-        }else{
+        } else {
             console.log(n);
-            n = n*i;
+            n = n * i;
         }
     }
     return n;
@@ -193,11 +196,11 @@ function factorial(num){
 factorial(5);
 
 
-function factorialRecursion (n){ 
-    if(n === 0){
+function factorialRecursion(n) {
+    if (n === 0) {
         return 1;
     }
-    return n * factorialRecursion(n-1)
+    return n * factorialRecursion(n - 1)
 }
 
 factorialRecursion(5);
@@ -205,26 +208,26 @@ factorialRecursion(5);
 
 // Recursive Reverse// Reverse an array recursively.
 
-function RecursiveReverse (arr) {
-    if(arr.length === 1){
-       return arr;
+function RecursiveReverse(arr) {
+    if (arr.length === 1) {
+        return arr;
     }
 
-    return arr.slice(arr.length-1).concat(RecursiveReverse(arr.slice(0,arr.length-1)));
+    return arr.slice(arr.length - 1).concat(RecursiveReverse(arr.slice(0, arr.length - 1)));
 }
 
 RecursiveReverse(['1', '2', '3']);
 
 //Write a function 'recursiveMultiplier' that takes two arguments, 'arr and num', and multiplies each arr value into by num and returns an array of the values.
 
-function recursiveMultiplier (arr, num){
-    if(arr.length === 1){
+function recursiveMultiplier(arr, num) {
+    if (arr.length === 1) {
         let arr2 = [];
-        arr2.push(arr[0] *num);
+        arr2.push(arr[0] * num);
         return arr2;
     }
     var arr1 = [];
-    arr1.push(arr[0]*num);
+    arr1.push(arr[0] * num);
     return arr1.concat(recursiveMultiplier(arr.slice(1), num));
 }
 
@@ -242,28 +245,28 @@ recursiveMultiplier([1, 2, 3], 3)
 
 //Write a function 'RecursiveExponent' that takes two arguments base, and expo, recursively returns exponent value of the base.
 
-function RecursiveComponent (base, num){
-    if(num === 1){
+function RecursiveComponent(base, num) {
+    if (num === 1) {
         return base;
     }
 
-    return base * RecursiveComponent(base, num-1)
+    return base * RecursiveComponent(base, num - 1)
 }
 
 RecursiveComponent(2, 2)
 
 // Same above Problem using a while Loop.
 
-function RecursiveComponent (base, num){
+function RecursiveComponent(base, num) {
     let value;
     let vijay = num;
-    while(vijay >= 1){
-        if(value === undefined){
+    while (vijay >= 1) {
+        if (value === undefined) {
             value = base;
-        }else{
-            value = value *  base;
+        } else {
+            value = value * base;
         }
-        vijay= vijay-1;
+        vijay = vijay - 1;
     }
     return value;
 }
@@ -273,10 +276,10 @@ function RecursiveComponent (base, num){
 function fibinocciSeries(n) {
     let a1 = 0;
     let a2 = 1;
-    let i=1;
+    let i = 1;
     let sum;
-    while( i < n){
-        sum = a1+a2;
+    while (i < n) {
+        sum = a1 + a2;
         a1 = a2;
         a2 = sum;
         i++;
@@ -288,13 +291,13 @@ fibinocciSeries(4);
 
 // Fibinocci Series Recursion. 
 
-function fibinocciRecursion (n) {
-    if(n === 0) {
+function fibinocciRecursion(n) {
+    if (n === 0) {
         return 0;
-    }else if( n===1){
+    } else if (n === 1) {
         return 1;
     }
-    return fibinocciRecursion(n-1) + fibinocciRecursion(n-2);
+    return fibinocciRecursion(n - 1) + fibinocciRecursion(n - 2);
 }
 
 fibinocciRecursion(3);
@@ -302,50 +305,51 @@ fibinocciRecursion(3);
 
 // Function reverse a string
 
-function stringReverse (string){
-    if(string.length === 1){
+function stringReverse(string) {
+    if (string.length === 1) {
         return string;
     }
-    return string.slice(string.length-1) + stringReverse(string.slice(0, string.length-1))
+    return string.slice(string.length - 1) + stringReverse(string.slice(0, string.length - 1))
 }
 
 // REcursive Reverse Array solution
 
-function recursiveReverse (arr){
-    if(arr.length === 1){
+function recursiveReverse(arr) {
+    if (arr.length === 1) {
         return arr;
     }
 
-    return [arr[arr.length-1]].concat(recursiveReverse(arr.slice(0,-1)))
-    
+    return [arr[arr.length - 1]].concat(recursiveReverse(arr.slice(0, -1)))
+
 }
 
 
-recursiveReverse([1,2,3])
+recursiveReverse([1, 2, 3])
 
 
 // flatten array using Recursion. Solution
 
-function flattenArray (arr){     
-    if(arr.length === 1){
+function flattenArray(arr) {
+    if (arr.length === 1) {
         return arr;
     }
     let vijay = [];
-      if(Array.isArray(arr[0])){
+    if (Array.isArray(arr[0])) {
         //   vijay.concat(arr[0]);
         flattenArray(arr[0])
-      }else{
-          return vijay.concat(arr);
-      }
-      return [].concat(flatten(arr.slice(1)));
+    } else {
+        return vijay.concat(arr);
+    }
+    return [].concat(flatten(arr.slice(1)));
 }
 
 flattenArray([[1], [2]]);
-function flattenArrayUsingReduce(arr){
-    arr.reduce(function(accumulator, currentValue){
-        if(Array.isArray(currentValue)){
+
+function flattenArrayUsingReduce(arr) {
+    arr.reduce(function (accumulator, currentValue) {
+        if (Array.isArray(currentValue)) {
             return accumulator.concat(currentValue)
-        }else{
+        } else {
             return accumulator.push(currentValue);
         }
     }, [])
@@ -361,49 +365,50 @@ flattenArrayUsingReduce([[1], [2]]);
 // }
 
 
-function flatten (arr){
-    return arr.reduce(function(accumulator, value){
-        return accumulator.concat(Array.isArray(value)? flatten(value) : value)
+function flatten(arr) {
+    return arr.reduce(function (accumulator, value) {
+        return accumulator.concat(Array.isArray(value) ? flatten(value) : value)
     }, [])
 }
 
 // minstack Stack solution. 
 
-function Stack (){
+function Stack() {
     this.currentElement = 0;
     this.data = {};
 }
 
-Stack.prototype.push = function(element){
+Stack.prototype.push = function (element) {
     this.data[++this.currentElement] = element;
 }
 
-Stack.prototype.pop = function (){
+Stack.prototype.pop = function () {
     delete this.data[this.currentElement];
 }
 
 
-function Minstack (){
+function Minstack() {
     this.data = {};
     this.currentElement = 0;
     this.minstack = new Stack();
 }
 
-Minstack.prototype.push = function(element){
-    if(this.minstack.currentElement === 0){
+Minstack.prototype.push = function (element) {
+    if (this.minstack.currentElement === 0) {
         this.minstack.push(element);
-    } else if (this.minstack.currentElement >= 0 && element < this.minstack.data[this.minstack.currentElement]){
+    } else if (this.minstack.currentElement >= 0 && element < this.minstack.data[this.minstack.currentElement]) {
         this.minstack.push(element);
     }
-    this.data[++this.currentElement] = element; 
+    this.data[++this.currentElement] = element;
 }
 
-Minstack.prototype.pop = function (){
+Minstack.prototype.pop = function () {
     delete this.data[this.currentElement];
 }
 
-Minstack.prototype.getMinimum = function (){
-    reutrn this.minstack.data[this.minstack.currentElement];
+Minstack.prototype.getMinimum = function () {
+    reutrn
+    this.minstack.data[this.minstack.currentElement];
 }
 
 
@@ -416,61 +421,61 @@ Minstack.prototype.getMinimum = function (){
 
 // 
 
-function Stack (){
+function Stack() {
     this.data = {};
     this.counter = 0;
 }
 
 // Stack push return the no of elements in the counter.
-Stack.prototype.push = function(element){
+Stack.prototype.push = function (element) {
     this.data[++this.counter] = element;
     return this.counter;
 }
 
-Stack.prototype.pop = function (){
-    if(this.counter === 0){
+Stack.prototype.pop = function () {
+    if (this.counter === 0) {
         return 'There are no more elements to pop from the stack . Please insert Elements to pop from the stack';
     }
     delete this.data[this.counter];
-    this.counter -=1;
+    this.counter -= 1;
     return this.data;
 }
 
-Stack.prototype.size = function (){
+Stack.prototype.size = function () {
     return this.counter;
 }
 
-Stack.prototype.peek = function (){
+Stack.prototype.peek = function () {
     return this.data[this.counter];
 }
 
 
 // Implement a Queue using a Stack pesudo code.
-    // Have two stack. 
-    // Stack in 
-    // Stack out
-    // During push push it in stack in.
-    //during pop check stackout stack.
-    // if there are no elements in the stack out stack then put elements to the stack .
-    // pop the last element of the stack. 
-    // Else if there are elements just pop the last element. 
+// Have two stack.
+// Stack in
+// Stack out
+// During push push it in stack in.
+//during pop check stackout stack.
+// if there are no elements in the stack out stack then put elements to the stack .
+// pop the last element of the stack.
+// Else if there are elements just pop the last element.
 
-function Queue(){
+function Queue() {
     this.stackIn = new Stack();
     this.stackOut = new Stack();
     this.queuecounter = 0;
 }
 
-Queue.prototype.enqueue = function(element){
+Queue.prototype.enqueue = function (element) {
     this.queuecounter += 1;
     return this.stackIn.push(element);
 }
 
-Queue.prototype.dequeue = function (){
-    if (Object.keys(this.stackOut.data).length >= 1){
+Queue.prototype.dequeue = function () {
+    if (Object.keys(this.stackOut.data).length >= 1) {
         this.queuecounter -= 1;
         return this.stackOut.pop();
-    }else{
+    } else {
         // for (var prop in this.stackIn.data){
         //     console.log('I am prop' + prop);
         //     if (this.stackIn.data.hasOwnProperty(prop)) {
@@ -480,22 +485,20 @@ Queue.prototype.dequeue = function (){
         //     }
         //     }
         let temp = 0;
-        for (let i = 0; i < this.queuecounter ; i++){
+        for (let i = 0; i < this.queuecounter; i++) {
             console.log('I am getting executed');
             this.stackOut.push(this.stackIn.data[this.stackIn.counter]);
             this.stackIn.pop();
-            temp +=1;
+            temp += 1;
         }
-        this.queuecounter = this.queuecounter -temp;
-        temp =0;
-        }
-        
+        this.queuecounter = this.queuecounter - temp;
+        temp = 0;
+    }
+
 }
 
 
-
-
-// Minstack Pseudo Code. 
+// Minstack Pseudo Code.
 
 // have tow stacks. 
 // One is the regular stack. 
@@ -503,21 +506,21 @@ Queue.prototype.dequeue = function (){
 
 
 // 
-function MinStack (){
+function MinStack() {
     this.data = {};
     this.counter = 0;
     this.minstack = new Stack();
 }
 
 
-MinStack.prototype.push = function(element){
-    if(Object.keys(this.minstack.data).length<1){
+MinStack.prototype.push = function (element) {
+    if (Object.keys(this.minstack.data).length < 1) {
         console.log('I am here 1');
         this.minstack.push(element);
-    }else if(this.minstack.peek() > element){
+    } else if (this.minstack.peek() > element) {
         console.log('I am here 2');
         this.minstack.push(element)
-    }else{
+    } else {
         console.log('I am here 3');
         this.minstack.push(this.minstack.peek())
     }
@@ -525,14 +528,14 @@ MinStack.prototype.push = function(element){
     return this.counter;
 }
 
-MinStack.prototype.pop = function (){
+MinStack.prototype.pop = function () {
     delete this.data[this.counter];
-    this.counter -=1;
+    this.counter -= 1;
     this.minstack.pop();
     return this.data;
 }
 
-MinStack.prototype.minumElement = function(){
+MinStack.prototype.minumElement = function () {
     return this.minstack.peek();
 }
 
@@ -547,23 +550,25 @@ MinStack.prototype.minumElement = function(){
 // if stack is empty and we push a close bracket return an error saying that it cannot be done. 
 
 
-function BracketsComparision (){
+function BracketsComparision() {
     this.bracketStack = new Stack();
 }
 
 
-BracketsComparision.prototype.comp = function (string){
-    let processString = string.split('').filter(elem =>  elem); // Do it without filter and split.
-    for(let i=0; i<processString.length ; i++){
-        if(processString[i] === '('){
+BracketsComparision.prototype.comp = function (string) {
+    let processString = string.split('').filter(elem = > elem
+)
+    ; // Do it without filter and split.
+    for (let i = 0; i < processString.length; i++) {
+        if (processString[i] === '(') {
             this.bracketStack.push(processString[i]);
-        } else if (processString[i] === ')' && this.bracketStack.counter > 0){
+        } else if (processString[i] === ')' && this.bracketStack.counter > 0) {
             this.bracketStack.pop();
-        } else if (processString[i] === ')' && this.bracketStack.counter < 1){
+        } else if (processString[i] === ')' && this.bracketStack.counter < 1) {
             return false;
         }
     }
-    if(this.bracketStack.counter === 0){
+    if (this.bracketStack.counter === 0) {
         return true;
     }
     return false;
@@ -572,12 +577,12 @@ BracketsComparision.prototype.comp = function (string){
 // function reverse array using recursion
 // Another PAttern can be that we can have a wrapper function outside Reverse Array 
 // and have a variable and push it to that array.
-function ReverseArray (arr){
-    if(arr.length === 1){
+function ReverseArray(arr) {
+    if (arr.length === 1) {
         return arr;
     }
 
-    return [arr[arr.length-1]].concat(ReverseArray(arr.slice(0,-1)));
+    return [arr[arr.length - 1]].concat(ReverseArray(arr.slice(0, -1)));
 }
 
 ReverseArray(['1', '2', '3']);
@@ -601,15 +606,15 @@ ReverseArray(['1', '2', '3']);
 // OUTPUT -- SORTED LIST 
 
 // My logic. 
-function bubbleSort(arr){
-    for(let i=0; i<arr.length; i++){
-        for (let j=0; j<arr.length ; j++){
-            if(arr[j+1]){
-                if(arr[j]>arr[j+1]){
+function bubbleSort(arr) {
+    for (let i = 0; i < arr.length; i++) {
+        for (let j = 0; j < arr.length; j++) {
+            if (arr[j + 1]) {
+                if (arr[j] > arr[j + 1]) {
                     let temp;
                     temp = arr[j];
-                    arr[j] = arr[j+1];
-                    arr[j+1] = temp;
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
                 }
             }
         }
@@ -618,10 +623,9 @@ function bubbleSort(arr){
 }
 
 
-bubbleSort([1,6,8,2,5]);
+bubbleSort([1, 6, 8, 2, 5]);
 
 // Change the for loop logic properly. 
-
 
 
 // Selection Sort  -------------------------------- Exercise
@@ -631,21 +635,23 @@ bubbleSort([1,6,8,2,5]);
 // 1) Choose the smallest element in the first array and push it to the second array. 
 // 2) Repeat the same process for all the elements in the arrays. 
 
-function slectionSort (arr){
+function slectionSort(arr) {
     let newArr = [];
-    while(arr.length > 0){
-        if(arr.length === 1){
+    while (arr.length > 0) {
+        if (arr.length === 1) {
             newArr.push(arr[0]);
             return newArr;
         }
         let smallestElement = arr[0];
-        for(let i=0; i<arr.length; i++){
-            if(arr[i]< smallestElement){
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i] < smallestElement) {
                 smallestElement = arr[i]
             }
         }
         newArr.push(smallestElement);
-        arr = arr.filter(element => element !== smallestElement);
+        arr = arr.filter(element = > element !== smallestElement
+    )
+        ;
     }
     return newArr;
 }
@@ -658,15 +664,15 @@ slectionSort([1, 6, 8, 2, 5]);
 // Get the Largest element in the array and replace it with the last value in the array. 
 // Have a largest pointer and keep decrementing for every loop. Because as the last element is always the largest. we dont need to do one extra look there for j
 // Keep repeating this step until all the elements in the array are sorted.
-function selectionSortInPlace (arr){
-    let largestTargetPointer = arr.length-1;
+function selectionSortInPlace(arr) {
+    let largestTargetPointer = arr.length - 1;
     let largestElement, largestElementIndex;
-    for(let i=0; i< arr.length ; i++){
+    for (let i = 0; i < arr.length; i++) {
         largestElement = arr[0];
         largestElementIndex = 0;
         // Have a largest pointer and keep decrementing for every loop. Because as the last element is always the largest. we dont need to do one extra look there for j
-        for(let j=0; j<= largestTargetPointer ; j++){
-            if(arr[j]> largestElement){
+        for (let j = 0; j <= largestTargetPointer; j++) {
+            if (arr[j] > largestElement) {
                 largestElement = arr[j];
                 largestElementIndex = j;
             }
@@ -674,7 +680,7 @@ function selectionSortInPlace (arr){
         let temp = arr[largestTargetPointer];
         arr[largestTargetPointer] = largestElement;
         arr[largestElementIndex] = temp;
-        largestTargetPointer = largestTargetPointer -1;
+        largestTargetPointer = largestTargetPointer - 1;
     }
     return arr;
 }
@@ -683,22 +689,21 @@ function selectionSortInPlace (arr){
 selectionSortInPlace([1, 6, 8, 2, 5]);
 
 
+// Insertion Sort algorithm. - -using new Array
 
-// Insertion Sort algorithm. - -using new Array 
-
-function insertionSort (arr){
+function insertionSort(arr) {
     let newArr = [];
-    for(let i=0; i<arr.length; i++){
-        if(newArr.length === 0){
+    for (let i = 0; i < arr.length; i++) {
+        if (newArr.length === 0) {
             newArr.push(arr[i]);
         }
-        for(let j=0; j<newArr.length; j++){
-           if(arr[i]> newArr[j] && j === newArr.length-1){
+        for (let j = 0; j < newArr.length; j++) {
+            if (arr[i] > newArr[j] && j === newArr.length - 1) {
                 newArr.push(arr[i]);
-           } 
-           else if (arr[i] < newArr[j]){
-                for(let k= newArr.length; k>=j+1; k--){
-                    newArr[k] = newArr[k-1];
+            }
+            else if (arr[i] < newArr[j]) {
+                for (let k = newArr.length; k >= j + 1; k--) {
+                    newArr[k] = newArr[k - 1];
                 }
                 newArr[j] = arr[i];
                 // newArr.splice(j,0,arr[i]);
@@ -714,13 +719,14 @@ insertionSort([1, 6, 8, 2, 5]);
 
 
 // Logic to implement array splice without using the splice method. // Hint Loop starting from behind.
-function abctest (arr){
-    for(let i=arr.length; i>0; i--){
-        arr[i] = arr[i-1];
+function abctest(arr) {
+    for (let i = arr.length; i > 0; i--) {
+        arr[i] = arr[i - 1];
         console.log(arr);
     }
     return arr.length;
 }
+
 abctest([1, 6, 8, 2, 5]);
 
 
@@ -734,30 +740,31 @@ abctest([1, 6, 8, 2, 5]);
 // Check the code and look at the exercise of bianka Front end Masters
 
 // insertion Sort in place. 
-function insertionSortInPlace(arr){
+function insertionSortInPlace(arr) {
     let sortedArrayPointer = 0;
     // while (sortedArrayPointer < arr.length-1){
     //     for(let i)
     // }
-    for(let i=0; i<arr.length; i++){
-        if(arr[sortedArrayPointer + 1]){
-            if(arr[sortedArrayPointer+1] < arr[sortedArrayPointer]){
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[sortedArrayPointer + 1]) {
+            if (arr[sortedArrayPointer + 1] < arr[sortedArrayPointer]) {
                 let temp = arr[sortedArrayPointer];
-                arr[sortedArrayPointer] = arr[sortedArrayPointer +1];
-                arr[sortedArrayPointer +1] = temp;
+                arr[sortedArrayPointer] = arr[sortedArrayPointer + 1];
+                arr[sortedArrayPointer + 1] = temp;
             }
         }
-        for(let j=0; j<sortedArrayPointer; j++){
-            if(arr[sortedArrayPointer] < arr[j]){
+        for (let j = 0; j < sortedArrayPointer; j++) {
+            if (arr[sortedArrayPointer] < arr[j]) {
                 let temp = arr[j];
                 arr[j] = arr[sortedArrayPointer];
                 arr[sortedArrayPointer] = temp;
             }
         }
-        sortedArrayPointer = sortedArrayPointer +1;
+        sortedArrayPointer = sortedArrayPointer + 1;
     }
     return arr;
 }
+
 insertionSortInPlace([1, 6, 8, 2, 5]);
 
 // Correct Implementation Insertion Sort in place.
@@ -801,15 +808,15 @@ insertionSortInplace([1, 6, 8, 2, 5])
 // Similarly , if the right pointer value is greater than the left pointer value push the left pointer value to the array and then increase the left pointer value.
 // Finally after the sorting is done. It returns the merged list. 
 
-function mergeSortRoutine(leftprArr, rightprArr){
-    let mergedList=[];
-    let leftArrPointer=0;
-    let RightArrPointer=0;
-    for(let i=0; i<(leftprArr.length+rightprArr.length)-2; i++){
-        if(leftprArr[leftArrPointer] > rightprArr[RightArrPointer]){
+function mergeSortRoutine(leftprArr, rightprArr) {
+    let mergedList = [];
+    let leftArrPointer = 0;
+    let RightArrPointer = 0;
+    for (let i = 0; i < (leftprArr.length + rightprArr.length) - 2; i++) {
+        if (leftprArr[leftArrPointer] > rightprArr[RightArrPointer]) {
             mergedList.push(rightprArr[RightArrPointer]);
-            RightArrPointer = RightArrPointer+1;
-        }else{
+            RightArrPointer = RightArrPointer + 1;
+        } else {
             mergedList.push(leftprArr[leftArrPointer]);
             leftArrPointer = leftArrPointer + 1;
         }
@@ -818,7 +825,7 @@ function mergeSortRoutine(leftprArr, rightprArr){
 }
 
 // Returns [3, 9, 10, 27, 38];
-mergeSortRoutine([3,27,38,43], [9,10,82]);
+mergeSortRoutine([3, 27, 38, 43], [9, 10, 82]);
 
 
 // Implement the Merge Sort Itself.
@@ -845,19 +852,19 @@ mergeSortRoutine([3,27,38,43], [9,10,82]);
 // Time Complexity is n logn - Because . When dividing the array into 2 its log n.
 // Then we are merging array using mergeRoutine that its the n part. 
 
-function mergeSort(list){
+function mergeSort(list) {
 
     let midsize, lSorted, rSorted;
-    if(list.length % 2 === 0){
-        midsize = list.length/2;
-    }else{
-        midsize = Math.floor((list.length-1)/2)
+    if (list.length % 2 === 0) {
+        midsize = list.length / 2;
+    } else {
+        midsize = Math.floor((list.length - 1) / 2)
     }
 
-    if(list.length < 2){
+    if (list.length < 2) {
         return list;
     }
-    let leftArray = list.slice(0,midsize);
+    let leftArray = list.slice(0, midsize);
     let rightArray = list.slice(midsize);
     lSorted = mergeSort(leftArray);
     rSorted = mergeSort(rightArray);
@@ -888,8 +895,7 @@ function mergeSortRoutine(leftptrArr, rightptrArr) {
 mergeSort([3, 27, 38, 43, 9, 10, 82]);
 
 
-
-// Quick Sort algorithm. 
+// Quick Sort algorithm.
 
 // Pesudo Code. 
 
@@ -897,21 +903,21 @@ mergeSort([3, 27, 38, 43, 9, 10, 82]);
 // In most rare case. If the list is already sorted. Then if we choose the highest
 // as the pivot it will lead to worst case scenario. which is n square.
 
-function quickSort(arr, low, high){
-    if(low === undefined || high === undefined){
+function quickSort(arr, low, high) {
+    if (low === undefined || high === undefined) {
         low = 0;
-        high = arr.length-1;
+        high = arr.length - 1;
     }
     debugger;
-    if(low<high){
+    if (low < high) {
         debugger;
         let partition = quickSortPartition(arr, low, high);
-        quickSort(arr, low, partition-1);
-        quickSort(arr, partition+1, high);
+        quickSort(arr, low, partition - 1);
+        quickSort(arr, partition + 1, high);
     }
 
     // base condition;
-    if(high-low === arr.length-1) {
+    if (high - low === arr.length - 1) {
         return arr;
     }
 }
@@ -920,7 +926,7 @@ function quickSortPartition(arr, low, high) {
     let pivotIndex = high;
     let compareIndex = low; // Compare index can be thought as the pivot location. 
     for (let i = low; i <= high; i++) {
-        if(pivotIndex === compareIndex){
+        if (pivotIndex === compareIndex) {
             return compareIndex;
         }
         if (arr[compareIndex] >= arr[pivotIndex]) {
@@ -935,14 +941,14 @@ function quickSortPartition(arr, low, high) {
     }
     return compareIndex;
 }
+
 quickSort([5, 3, 1, 4, 2]);
 quickSortPartition([5, 3, 1, 4, 2])
 quickSort([5, 3, 1, 4, 2])
 quickSort([3, 7, 8, 5, 2, 1, 9, 5, 4]);
 
 
-
-// Understand difference between Linked list and Array. 
+// Understand difference between Linked list and Array.
 // Both arrays and linked list can store data of linear type.
 
 // Advantages of linked list over array. 
@@ -954,8 +960,8 @@ quickSort([3, 7, 8, 5, 2, 1, 9, 5, 4]);
 // 1) Accessing elements in an array is easy(O(1)). But in linked list we have to loop O(n).
 // 2) Linked list has extra memory for pointer. // may be this is not applicable for javascript. 
 // 3) Since memory of a linked list is random. Accessing elements will take a performance hit. 
-        // In an array elements are present next to each other therefore. memory addresses are also next to each other
-        // and accessing that memory location should be easy. when compared to a random memory location.
+// In an array elements are present next to each other therefore. memory addresses are also next to each other
+// and accessing that memory location should be easy. when compared to a random memory location.
 
 
 // Undestand infromation retrieval. 
@@ -973,7 +979,7 @@ quickSort([3, 7, 8, 5, 2, 1, 9, 5, 4]);
 // Mostly I think -- Linked list is used to preserve a order. 
 
 
-function Node(value){
+function Node(value) {
     this.value = value
     this.next = null;
 }
@@ -982,8 +988,8 @@ function Node(value){
 // The head is used to keep track of the starting point of the linked list. 
 // The Tail is used to keep track of the last position of the linked list. 
 // We keep track of the head and tail so that the operations are easier.
-function LinkedList(value){
-    if(!value){
+function LinkedList(value) {
+    if (!value) {
         throw new Error(`Please initialize a value for setting up the linked list`);
     }
     this.head = new Node(value);
@@ -995,29 +1001,29 @@ function LinkedList(value){
 // create a new node using the node constructor. 
 // Then assign the current tail next position to the new tail position.
 // Change the tail to the newly created tail.
-LinkedList.prototype.addTail = function(value){
+LinkedList.prototype.addTail = function (value) {
     let latestTail = new Node(value);
     this.tail.next = latestTail;
     this.tail = latestTail;
-    this.length +=1;
+    this.length += 1;
 }
 
-LinkedList.prototype.removeNode = function (value){
+LinkedList.prototype.removeNode = function (value) {
     let nodeValue = this.head;
-    if(nodeValue.value === value && nodeValue.next === null){
+    if (nodeValue.value === value && nodeValue.next === null) {
         throw `There is only head in the linked list. Insert other items to delete them`;
     }
-    while(nodeValue.next !== null){
-        if (nodeValue.next.value === value && nodeValue.next.next === null){ // if the delete node is the last one
+    while (nodeValue.next !== null) {
+        if (nodeValue.next.value === value && nodeValue.next.next === null) { // if the delete node is the last one
             nodeValue.next = null;
             this.tail = nodeValue;
             this.length -= 1;
             return;
-        } else if (nodeValue.next.value === value && nodeValue.next.next !== null){ // if the delete node is in the middle.
+        } else if (nodeValue.next.value === value && nodeValue.next.next !== null) { // if the delete node is in the middle.
             nodeValue.next = nodeValue.next.next;
             this.length -= 1;
             return;
-        }else if(nodeValue.value === value && nodeValue.next !== null && nodeValue === this.head){ // If the delete is head.
+        } else if (nodeValue.value === value && nodeValue.next !== null && nodeValue === this.head) { // If the delete is head.
             this.head = nodeValue.next;
             this.length -= 1;
             return;
@@ -1027,10 +1033,10 @@ LinkedList.prototype.removeNode = function (value){
 }
 
 
-LinkedList.prototype.peek = function (){
+LinkedList.prototype.peek = function () {
     let nodeValue = this.head;
     let arr = [];
-    let i=0;
+    let i = 0;
     while (i < this.length) {
         arr.push(nodeValue);
         nodeValue = nodeValue.next; // Be careful here. It should not be this.head.next it should be nodevalue.next
@@ -1043,33 +1049,35 @@ LinkedList.prototype.peek = function (){
 
 
 // Initilaze a Constructor for the node of a tree.
-function Node (value){
+function Node(value) {
     this.value = value;
     this.child = [];
 }
 
 
-function Tree (value){
+function Tree(value) {
     this.root = new Node(value);
 }
 
 
 // Check to implement this using while loop.
-Tree.prototype.addChild = function (value){
+Tree.prototype.addChild = function (value) {
     debugger;
-    function traverseTree (root){
-        if(root.child.length === 2){
+
+    function traverseTree(root) {
+        if (root.child.length === 2) {
             return;
         }
-        if(root.child.length < 2){
+        if (root.child.length < 2) {
             root.child.push(new Node(value));
             return root;
-        }else {
-                traverseTree(root.child[0]);
-                traverseTree(root.child[1]);
+        } else {
+            traverseTree(root.child[0]);
+            traverseTree(root.child[1]);
         }
     }
-     // function traverseTree (root){
+
+    // function traverseTree (root){
     //     if(insertedFlag){
     //         return root;
     //     }
@@ -1091,31 +1099,30 @@ Tree.prototype.contains = function () {
 }
 
 
+// N-array tree .. There are no limits. If its binary tree then the leaf can contain only two nodes.
 
-// N-array tree .. There are no limits. If its binary tree then the leaf can contain only two nodes. 
-
-function Node(value){
+function Node(value) {
     this.value = value;
     this.children = [];
 }
 
-function NArray (value){
+function NArray(value) {
     this.root = new Node(value);
 }
 
-NArray.prototype.add = function (value){
+NArray.prototype.add = function (value) {
     let node = new Node(value)
     this.children.push(node);
     return node;
 }
 
-NArray.prototype.contains = function (value){
-     if(value === this.root.value) {
-         return true;
-     }
-     for(let i=0; i<this.root.children.length ;i++){
+NArray.prototype.contains = function (value) {
+    if (value === this.root.value) {
+        return true;
+    }
+    for (let i = 0; i < this.root.children.length; i++) {
 
-     }   
+    }
 }
 
 
@@ -1140,60 +1147,60 @@ NArray.prototype.contains = function (value){
 
 // Pesudo code BST.
 
-function Tree(value){
+function Tree(value) {
     this.value = value;
     this.left = null;
     this.right = null;
 }
 
-Tree.prototype.insert = function (value){
-    function findPosition(root){
-        if(value <= root.value){
-            if(root.left === null){
+Tree.prototype.insert = function (value) {
+    function findPosition(root) {
+        if (value <= root.value) {
+            if (root.left === null) {
                 root.left = new Tree(value);
                 return;
-            }else{
+            } else {
                 findPosition(root.left);
             }
-        }else if(value > root.value){
-            if(root.right === null){
+        } else if (value > root.value) {
+            if (root.right === null) {
                 root.right = new Tree(value);
                 return;
-            }else{
+            } else {
                 findPosition(root.right);
             }
         }
     }
+
     findPosition(this);
 }
 
-Tree.prototype.contains = function(value){
-    function iterateThroughTree(root){
+Tree.prototype.contains = function (value) {
+    function iterateThroughTree(root) {
         // Every child or node is a tree 
         // So we only need to check root value. 
         // Initially we pass in the root. using the this keyword.
         // When we instantitate the tree . we use the new keyword.
         // This is where we have created the root.
-        if(root.value === value && root.value !== null){
+        if (root.value === value && root.value !== null) {
             return true;
-        }else if(value <= root.value){
+        } else if (value <= root.value) {
             iterateThroughTree(root.left);
-        }else if(value > root.value){
+        } else if (value > root.value) {
             iterateThroughTree(root.right);
-        }else if(root.value === null){
+        } else if (root.value === null) {
             return false;
         }
     }
+
     iterateThroughTree(this);
 }
-
-
 
 
 /// Function check palindrome
 
 
-function palindromeValidator(string){
+function palindromeValidator(string) {
     function checkPalindrome(string) {
         // base condition for the recursive function.
         if (string.length === 1) {
@@ -1202,17 +1209,17 @@ function palindromeValidator(string){
 
         return string.charAt(string.length - 1) + checkPalindrome(string.slice(0, -1));
     }
+
     let stringReversed = checkPalindrome(string);
-    if(abc === string){
+    if (abc === string) {
         return true;
-    }else{
+    } else {
         return false;
     }
 }
 
 
-
-// Binary Search Tree without using a new recurse function for traversing. 
+// Binary Search Tree without using a new recurse function for traversing.
 
 
 // Pesudo Code. 
@@ -1231,9 +1238,9 @@ function palindromeValidator(string){
 // If value > current value go right.
 
 
-function BinarySearchTree (value){
+function BinarySearchTree(value) {
     this.value = value;
-    this.left  = null;
+    this.left = null;
     this.right = null;
 }
 
@@ -1243,17 +1250,17 @@ function BinarySearchTree (value){
 // var tree = new BinarySearchTree(value);  initially value is created.
 
 // Try to return the entire tree at the end
-BinarySearchTree.prototype.insert = function(value){
-    if(value <= this.value){
-        if(this.left === null){
+BinarySearchTree.prototype.insert = function (value) {
+    if (value <= this.value) {
+        if (this.left === null) {
             this.left = new BinarySearchTree(value);
-        }else{
-            this.left.insert(value);          
+        } else {
+            this.left.insert(value);
         }
-    }else{
-        if(this.right === null){
+    } else {
+        if (this.right === null) {
             this.right = new BinarySearchTree(value)
-        }else{
+        } else {
             this.right.insert(value);
         }
     }
@@ -1261,19 +1268,19 @@ BinarySearchTree.prototype.insert = function(value){
 
 // Note here the return is very important because we need to return te returned value. 
 // from the previous stack.
-BinarySearchTree.prototype.contains = function (value){
-    if(value === this.value) {
+BinarySearchTree.prototype.contains = function (value) {
+    if (value === this.value) {
         return true;
-    }else if(value <= this.value){
-        if(this.left !== null){
+    } else if (value <= this.value) {
+        if (this.left !== null) {
             return this.left.contains(value);
-        }else{
+        } else {
             return false;
         }
-    } else if (value > this.value){
-        if(this.right !== null){
+    } else if (value > this.value) {
+        if (this.right !== null) {
             return this.right.contains(value);
-        }else{
+        } else {
             return false;
         }
     }
@@ -1332,6 +1339,7 @@ BinarySearchTree.prototype.deleteMinimum = function (parent) {
 
 BinarySearchTree.prototype.addAll = function () {
     let sum = 0;
+
     function traversal(root) {
         sum = root.value + sum;
         if (root.left !== null) {
@@ -1341,6 +1349,7 @@ BinarySearchTree.prototype.addAll = function () {
             traversal(root.right);
         }
     }
+
     traversal(this);
     return sum;
 }
@@ -1368,28 +1377,28 @@ BinarySearchTree.prototype.addAll = function () {
 // 
 
 
-
-BinarySearchTree.prototype.inOrderTraversal = function (){
+BinarySearchTree.prototype.inOrderTraversal = function () {
     // base case//
     debugger;
-    if(this.left === null && this.right === null){
+    if (this.left === null && this.right === null) {
         console.log(this.value);
         return;
-    }else{
-        if(this.left){
+    } else {
+        if (this.left) {
             console.log(this.value);
             this.left.inOrderTraversal();
         }
-        if(this.right){
+        if (this.right) {
             console.log(this.value);
             this.right.inOrderTraversal();
         }
     }
 }
 
-function ChangetheValue (value){
+function ChangetheValue(value) {
     console.log(value);
 }
+
 // Updated Version
 // Pseudo code. 
 // Until you find the smallest left node. Recurse.
@@ -1400,13 +1409,13 @@ function ChangetheValue (value){
 // Here once our criteria is not met. then the default return undefined will be called. 
 // This will be our base case.
 BinarySearchTree.prototype.inOrderTraversal = function () {
-        if (this.left !== null) {
-            this.left.inOrderTraversal();
-        }
-        ChangetheValue(this.value);  
-        if (this.right !==null) {
-            this.right.inOrderTraversal();
-        }
+    if (this.left !== null) {
+        this.left.inOrderTraversal();
+    }
+    ChangetheValue(this.value);
+    if (this.right !== null) {
+        this.right.inOrderTraversal();
+    }
 }
 
 // Pesudo code pre order traversal. 
@@ -1418,11 +1427,11 @@ BinarySearchTree.prototype.inOrderTraversal = function () {
 // From the left access the right. This cannot be dont without the root.
 // 
 
-BinarySearchTree.prototype.preOrderTraversal = function(){
+BinarySearchTree.prototype.preOrderTraversal = function () {
     console.log(this.value);
-    if(this.left !== null){
+    if (this.left !== null) {
         this.left.preOrderTraversal();
-        if(this.right !== null){
+        if (this.right !== null) {
             this.right.preOrderTraversal();
         }
     }
@@ -1437,7 +1446,7 @@ BinarySearchTree.prototype.preOrderTraversal = function(){
 // Print the right child. 
 // Then print the root. 
 
-BinarySearchTree.prototype.postOrderTraversal = function(){
+BinarySearchTree.prototype.postOrderTraversal = function () {
     if (this.left !== null) {
         this.left.preOrderTraversal();
         if (this.right !== null) {
@@ -1453,10 +1462,10 @@ BinarySearchTree.prototype.postOrderTraversal = function(){
 // The maximum is placed at the right of the binary search tree.
 
 // Implementation wrong.
-BinarySearchTree.prototype.deleteMinimum = function (){
-    if(this.left !== null){
+BinarySearchTree.prototype.deleteMinimum = function () {
+    if (this.left !== null) {
         this.left.deleteMinimum();
-    }else{
+    } else {
         this.value = null;
     }
 }
@@ -1480,29 +1489,28 @@ BinarySearchTree.prototype.deleteMinimum = function () {
 // Then replace the current value with null.
 
 
-
-BinarySearchTree.prototype.deleteMinimum = function (parent){
+BinarySearchTree.prototype.deleteMinimum = function (parent) {
     debugger;
-    if(!parent){
+    if (!parent) {
         parent = this;
     }
     // Handle if the minimum is the root and there are no left and right.
     // We can throw a message saying that there is only one element in 
     // The tree and it cannot be deleted.
     // If the minimum is the root.
-    if(this.left === null && this.right === null && this === parent){
+    if (this.left === null && this.right === null && this === parent) {
         this.value = null;
     }
-    else if(this.left === null && this.right !== null && this === parent){
+    else if (this.left === null && this.right !== null && this === parent) {
         parent = this.right;
     }
-     // Check if its a leaf node. 
+    // Check if its a leaf node.
     // Check if both the left and the right are null
-    else if(this.left === null && this.right === null){
+    else if (this.left === null && this.right === null) {
         parent.left = null;
-    } else if (this.left === null && this.right !== null){
+    } else if (this.left === null && this.right !== null) {
         parent.left = this.right;
-    }else{
+    } else {
         this.left.deleteMinimum(this);
     }
 }
@@ -1527,9 +1535,10 @@ BinarySearchTree.prototype.deleteMaximum = function (parent) {
 // Pesudo Code. 
 
 // Binary Search Tree Add the elements in the tree.
-BinarySearchTree.prototype.addAll = function (){
+BinarySearchTree.prototype.addAll = function () {
     let sum = 0;
-    function traversal (root){
+
+    function traversal(root) {
         sum = root.value + sum;
         if (root.left !== null) {
             traversal(root.left);
@@ -1538,25 +1547,26 @@ BinarySearchTree.prototype.addAll = function (){
             traversal(root.right);
         }
     }
+
     traversal(this);
     return sum;
 };
 
 
-function Queue(){
+function Queue() {
     this.data = [];
 }
 
-Queue.prototype.enqueue = function (value){
+Queue.prototype.enqueue = function (value) {
     this.data.push(value);
     return this.data;
 }
 
-Queue.prototype.dequeue = function(){
-    return this.data.splice(0,1);
+Queue.prototype.dequeue = function () {
+    return this.data.splice(0, 1);
 }
 
-Queue.prototype.size = function (){
+Queue.prototype.size = function () {
     return this.data.length;
 }
 
@@ -1573,24 +1583,25 @@ Queue.prototype.size = function (){
 // 5) Console.log the value. 
 // 6) Push the left and right child of the tree to the queue. using enqueue.
 // 7) dequeue the first element of the Queue and assign it to temp node.
-BinarySearchTree.prototype.levelOrderTraversalBreadthFirst = fucntion(){
+BinarySearchTree.prototype.levelOrderTraversalBreadthFirst = fucntion()
+{
     let queue = new Queue();
     let tempnode = this;
-    while (tempnode){
+    while (tempnode) {
         console.log(this.value);
-        if(tempnode.left !== null){
+        if (tempnode.left !== null) {
             queue.enqueue(tempnode.left);
         }
         if (tempnode.right !== null) {
             queue.enqueue(tempnode.right);
         }
         tempnode = queue.dequeue();
-    }   
+    }
 }
 
-function checkValidity(root){
-    if(root.left !==null){
-        if(root.left.value > root.value){
+function checkValidity(root) {
+    if (root.left !== null) {
+        if (root.left.value > root.value) {
             return false;
         }
     }
@@ -1601,36 +1612,36 @@ function checkValidity(root){
     }
 }
 
-BinarySearchTree.prototype.isValidBST = function (){
+BinarySearchTree.prototype.isValidBST = function () {
     debugger;
-    if (checkValidity(this) === false){
+    if (checkValidity(this) === false) {
         return false;
     }
-    if(this.left || this.right){
+    if (this.left || this.right) {
         if (!this.left.isValidBST() || !this.right.isValidBST()) {
             return false;
         }
     }
-   
+
     return true;
 }
 
 BinarySearchTree.prototype.deleteAnyNode = function (value, parent) {
-    if(value === this.value){
-        if(this.left !== null && this.right !== null){
+    if (value === this.value) {
+        if (this.left !== null && this.right !== null) {
             return;
-        }else if(this.left !==null && this.right == null){
+        } else if (this.left !== null && this.right == null) {
             parent.left = this.left;
         } else if (this.left === null && this.right !== null) {
             parent.left = this.right;
-        } else{
+        } else {
             parent.left = null;
         }
     }
-    if(this.left !== null){
+    if (this.left !== null) {
         this.left.deleteAnyNode(value, this);
     }
-    if(this.right !== null){
+    if (this.right !== null) {
         this.right.deleteAnyNode(value, this);
     }
 }
@@ -1647,23 +1658,23 @@ BinarySearchTree.prototype.deleteAnyNode = function (value, parent) {
 // Explore Binary decimal hexadecimal conversion. Using hasing function.
 // Read coercion
 
-const hasingExercise = (function(){
+const hasingExercise = (function () {
     let storage = [];
 
     // This is the hasing Function
     // Takes an input 
     // Returns an number that can be index in an array. 
 
-    function hasing(input){
+    function hasing(input) {
         let sum = 0;
-        for (let i=0; i<input.length ; i++){
+        for (let i = 0; i < input.length; i++) {
             sum = sum + input.charCodeAt(i);
         }
         return sum;
     }
 
     const myHashTable = {
-        set(prop, value){
+        set (prop, value) {
             let storageVal = hasing(prop);
             let newObj = {};
             newObj[prop] = value;
@@ -1673,15 +1684,15 @@ const hasingExercise = (function(){
             // Else create a new propery in that existing object and add the value.
             // This is used to treat collision.
 
-            if(typeof storage[storageVal] === "object"){
+            if (typeof storage[storageVal] === "object") {
                 storage[storageVal][prop] = value
-            }else{
+            } else {
                 storage[storageVal] = newObj;
             }
             return storage;
         }
 
-        get(prop){
+        get (prop) {
             let storageVal = hasing(prop);
 
             // Check if there is an object to retrieve initially.
@@ -1692,18 +1703,18 @@ const hasingExercise = (function(){
             // There fore. get the object and then the corresponsing key and return
             // If there was only one key then we know that there has not been any
             // collision. Therefore return the entire object.
-            if(storage[storageVal]){
-                if(Object.keys(storage[storageVal]).length > 1){
+            if (storage[storageVal]) {
+                if (Object.keys(storage[storageVal]).length > 1) {
                     return storage[storageVal][prop];
-                }else{
+                } else {
                     return storage[storageVal];
                 }
-            }else{
+            } else {
                 throw 'There is no element to retrieve';
             }
         }
 
-        remove(prop){
+        remove(prop) {
             let storageVal = hasing(prop);
             if (storage[storageVal]) {
                 if (Object.keys(storage[storageVal]).length > 1) {
@@ -1714,21 +1725,20 @@ const hasingExercise = (function(){
             } else {
                 throw 'There is no element to retrieve';
             }
-           
+
             return storage;
         }
     }
 
     return {
-        set : myHashTable.set,
-        get : myHashTable.get,
-        remove : myHashTable.remove,
+        set: myHashTable.set,
+        get: myHashTable.get,
+        remove: myHashTable.remove,
     }
 })();
 
-has loop
 
-function LinkedList () {
+function LinkedList() {
     this.head = null;
 }
 
@@ -1765,7 +1775,9 @@ function Enqueue(element) {
 // and then popping from stack 2
 function Dequeue() {
     if (Stack2.length === 0) {
-        if (Stack1.length === 0) { return 'Cannot dequeue because queue is empty'; }
+        if (Stack1.length === 0) {
+            return 'Cannot dequeue because queue is empty';
+        }
         while (Stack1.length > 0) {
             var p = Stack1.pop();
             Stack2.push(p);
@@ -1778,3 +1790,286 @@ Enqueue('a');
 Enqueue('b');
 Enqueue('c');
 Dequeue();
+
+
+////
+
+/// (A+B/C*(D+E)-F) -- ABC/DE+*+F-
+function Stack() {
+    this.storage = [];
+}
+
+Stack.prototype.push = function (value) {
+    if (!value) {
+        throw new Error('the Value to push in stack is not defined');
+
+    }
+    this.storage.push(value)
+};
+
+Stack.prototype.pop = function () {
+    if (this.size() < 1) {
+        throw new Error('There are no elements to retrieve from the stack');
+    }
+    return this.storage.pop();
+};
+
+Stack.prototype.size = function () {
+    return this.storage.length;
+};
+
+Stack.prototype.peek = function () {
+    return this.storage;
+};
+
+Stack.prototype.seekTop = function () {
+    return this.storage[this.size() - 1];
+};
+
+// let symbol = {
+//     '+' : 'binaryOperator',
+//     '-' : 'binaryOperator',
+//     '/': 'binaryOperator',
+//     '*': 'binaryOperator'
+//     '++': 'UnaryOperator',
+//     '--': 'UnaryOperator'
+// }
+
+var infixToPostfixPrecedence = {
+    '-': 13,
+    '+': 13,
+    '*': 14,
+    '/': 14
+};
+
+
+function handleClosingParern(stack) {
+    let tempstring = '';
+    while (stack.storage[stack.size() - 1] !== '(') {
+        tempstring = tempstring + stack.pop();
+    }
+    if(stack.seekTop() === '('){
+        stack.pop();
+    }
+    return tempstring;
+}
+
+function handleOperatorEqualityTest(stack, string) {
+    let tempstring = '';
+    if(stack.size() > 0){
+        while (stack.seekTop()) {
+            if (stack.seekTop() !== '(' && infixToPostfixPrecedence[string] <= infixToPostfixPrecedence[stack.seekTop()]) {
+                tempstring = tempstring + stack.pop();
+            } else if (stack.seekTop() !== '(' && infixToPostfixPrecedence[string] > infixToPostfixPrecedence[stack.seekTop()]){
+                stack.push(string);
+                return tempstring ? tempstring : ''
+            }else if (stack.seekTop() === '(') {
+                stack.push(string);
+                return tempstring ? tempstring : ''
+            }
+        }
+    }else{
+        stack.push(string);
+    }
+}
+
+
+function infixToPostFix(string) {
+    debugger;
+    let postFixNotation = '';
+    let stack = new Stack();
+    if (!string) {
+        throw new Error('Please enter a valid string');
+    }
+
+    for (let i = 0; i < string.length; i++) {
+
+
+        if (infixToPostfixPrecedence.hasOwnProperty(string[i])) {
+
+            let comapareOperatorPrecedence = handleOperatorEqualityTest(stack, string[i]);
+
+            if (comapareOperatorPrecedence) {
+                postFixNotation = postFixNotation + comapareOperatorPrecedence;
+            }
+
+        } else {
+
+            if (string[i] === ')') {
+
+                let getstringwhenParen = handleClosingParern(stack);
+
+                if (getstringwhenParen) {
+
+                    postFixNotation = postFixNotation + getstringwhenParen;
+
+                }
+
+            } else if (string[i] === '(') {
+
+                stack.push(string[i]);
+
+            } else {
+                postFixNotation = postFixNotation + string[i];
+            }
+
+
+        }
+
+
+    }
+    while (stack.size() > 0) {
+        postFixNotation = postFixNotation + stack.pop();
+    }
+    return postFixNotation;
+}
+
+
+// function infixToPostFix(string) {
+//     debugger;
+//     let postFixNotation = '';
+//     let stack = new Stack();
+//     if (!string) {
+//         throw new Error('Please enter a valid string');
+//     }
+//
+//     for (let i = 0; i < string.length; i++) {
+//
+//
+//         if (infixToPostfixPrecedence.hasOwnProperty(string[i])) {
+//
+//             let comapareOperatorPrecedence = handleOperatorEqualityTest(stack, string[i]);
+//
+//             if (comapareOperatorPrecedence) {
+//                 postFixNotation = postFixNotation + comapareOperatorPrecedence;
+//             }
+//
+//         } else {
+//
+//             postFixNotation = postFixNotation + string[i];
+//             // if (string[i] === ')') {
+//             //
+//             //     let getstringwhenParen = handleClosingParern(stack);
+//             //
+//             //     if (getstringwhenParen) {
+//             //
+//             //         postFixNotation = postFixNotation + getstringwhenParen;
+//             //
+//             //     }
+//             //
+//             // } else if (string[i] === '(') {
+//             //
+//             //     stack.push(string[i]);
+//             //
+//             // } else {
+//             //     postFixNotation = postFixNotation + string[i];
+//             // }
+//
+//
+//         }
+//
+//
+//     }
+//     while (stack.size() > 0) {
+//         postFixNotation = postFixNotation + stack.pop();
+//     }
+//     return postFixNotation;
+// }
+
+var a1 = ['b', 'd'];
+var b1 = ['a' ,'b', 'c', 'd'];
+var string = '';
+
+function LongestCommonSubSebsequence(i, j) {
+    debugger;
+    if(i === a1.length-1 || j === b1.length -1){
+        return 0;
+    }else if (a1[i] === b1[j]){
+        string = string + a1[i];
+        return 1+LongestCommonSubSebsequence(i+1, j+1);
+    }else{
+        return Math.max(LongestCommonSubSebsequence(i+1, j), LongestCommonSubSebsequence(i, j+1));
+    }
+}
+
+LongestCommonSubSebsequence(0, 0);
+console.log(string);
+
+
+var lcsStorage = [];
+function LcsUsingMemoization (i, j){
+    if(a1[i] === b1[j]){
+        LcsUsingMemoization
+    }
+}
+
+
+
+/*
+*   USING RECURSION
+*/
+function LCS(S1, m, S2, n) {
+    var finalResult;
+
+    //define base case. if the length of either strings are zero,
+    //then no need to continue return 0
+    if(m === 0 || n === 0) {
+        finalResult = 0;
+    } else if(S1[m - 1] === S2[n - 1]) { //if the last characters are the same
+        finalResult = 1 + LCS(S1, m - 1, S2, n - 1);
+    } else {
+        var excludeLastOfS1 = LCS(S1, m - 1, S2, n),
+            excludeLastOfS2 = LCS(S1, m, S2, n - 1);
+
+        finalResult = Math.max(excludeLastOfS1, excludeLastOfS2);
+    }
+    //return the final result
+    return finalResult;
+}
+
+var string_one = "ABACBDAB", //BATD
+    string_one_length = string_one.length,
+    string_two = "BDCADB", //ABACD
+    string_two_length = string_two.length,
+    lcs = LCS(string_one, string_one_length, string_two, string_two_length);
+
+console.log("Longest Comment Subsequence is: ", lcs);
+
+
+/*
+*   USING DYNAMIC PROGRAMMING:
+*/
+
+//Initial 2D dynamic array to a size of the small string
+var dpArr = [];
+var size;
+string_one_length <= string_two_length ? size = string_one_length : size = string_two_length ;
+
+for(var i = 0; i < size; i++) {
+    dpArr.push([]);
+}
+
+function LCS_DP(S1, m, S2, n) {
+    var finalResult;
+    //check to see if the result is already stored in the array. if it is return that instead
+    if(dpArr[m][n] !== undefined) {
+        return dpArr[m][n];
+    }
+    //define base case. if the length of either strings are zero,
+    //then no need to continue return 0
+    if(m === 0 || n === 0) {
+        finalResult = 0;
+    } else if(S1[m - 1] === S2[n - 1]) { //if the last characters are the same
+        finalResult = 1 + LCS_DP(S1, m - 1, S2, n - 1);
+    } else {
+        var excludeLastOfS1 = LCS_DP(S1, m - 1, S2, n),
+            excludeLastOfS2 = LCS_DP(S1, m, S2, n - 1);
+
+        finalResult = Math.max(excludeLastOfS1, excludeLastOfS2);
+    }
+    dpArr[m][n] = finalResult;
+    //return the final result
+    return finalResult;
+}
+
+console.log("LCS Dynamic Programming is: ", lcs);
