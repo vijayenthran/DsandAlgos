@@ -209,12 +209,47 @@ function printSubstring(string, strPointer, length, storage) {
     if (length === string.length) {
         return storage;
     }
-    if(strPointer === string.length || strPointer+length > string.length){
+    if (strPointer === string.length || strPointer + length > string.length) {
         strPointer = 0;
-        length = length +1;
+        length = length + 1;
     }
-    storage.push(string.slice(strPointer, strPointer+length));
-    return printSubstring(string,strPointer+1, length, storage);
+    storage.push(string.slice(strPointer, strPointer + length));
+    return printSubstring(string, strPointer + 1, length, storage);
 }
 
-printSubstring('abcd', 0,1, []);
+printSubstring('abcd', 0, 1, []);
+
+
+/*
+Given an array A[] and a number x, check for pair in A[] with sum as x
+*/
+
+function findPair(arr, sum) {
+    let pairs = [];
+    debugger;
+    function traverse(arr, sum, pointer, position) {
+        // base case
+        if (pointer === arr.length-1) {
+            if(pairs.length > 0){
+                return pairs;
+            }else{
+                return 0;
+            }
+        }
+        if (arr[pointer] + arr[position] === sum) {
+            pairs.push(arr[pointer]);
+            pairs.push(arr[position]);
+            return pairs
+        } else if (position === arr.length-1) {
+            position = 1;
+            pointer = pointer+1;
+            position = position + pointer;
+        } else {
+            position += 1;
+        }
+        return traverse(arr, sum, pointer, position);
+    }
+
+    return traverse(arr, sum, 0, 1);
+}
+findPair([1,2,3], 5);
