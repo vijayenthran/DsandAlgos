@@ -24,6 +24,8 @@ Question
 -  Check if two nodes are cousins.
 
 // -- To Continue -- Pointer
+- reverse a each children in a binary tree. Left should be right and right should be left.
+find if.
 -  Print the Bottom View of a Binary Search Tree. -- Validate bottom view with various inputs.  - This is done.
 -  Lowest Common Ancestor.
 -  Print Ancestors of a node.
@@ -871,7 +873,7 @@ To Check Two Nodes are cousins of each other.
 They should be in the same level and they should have different parents.
 */
 
-BinarySearchTree.prototype.isCousins = function (value1, value2) {
+BinarySearchTree.prototype.areCousins = function (value1, value2) {
     let level = 0;
     var storage = [];
     if (!value1 || !value2) {
@@ -909,6 +911,40 @@ BinarySearchTree.prototype.isCousins = function (value1, value2) {
     }
 };
 
+BinarySearchTree.prototype.InverseTree = function(){
+    debugger;
+    function traversal(root, parent){
+        if(root.left !== null){
+            traversal(root.left, root);
+        }
+        if(root === parent){
+            return;
+        }
+        let temp = parent.right;
+        parent.right = parent.left;
+        parent.left = temp;
+    }
+    traversal(this, this)
+};
+
+
+BinarySearchTree.prototype.InvertTree = function (){
+  function traversal(root){
+      if(root === null){
+          return;
+      }
+      if(root.left !== null){
+          traversal(root.left);
+      }
+      if(root.right !== null){
+          traversal(root.right);
+      }
+      let temp = root.left;
+      root.left = root.right;
+      root.right = temp;
+  }
+  traversal(this)
+};
 
 // //https://www.youtube.com/watch?v=F-_1sbnPbWQ&t=288s
 // BinarySearchTree.prototype.LowestCommonAncestor = function (value1, value2){
@@ -955,3 +991,4 @@ var lowestCommonAncestor = function(root, p, q) {
         return root;
     }
 }
+
