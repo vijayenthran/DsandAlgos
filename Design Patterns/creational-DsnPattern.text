@@ -1,0 +1,37 @@
+ Group of design patterns.
+
+ Creational design pattern.
+
+These design patterns are used to create objects.
+
+1) Singleton design pattern.
+
+- Makes sure that there is only once instance created.
+
+ex :
+
+var singleton = function () {
+
+    var instance;
+
+    function createNewObject(){
+        return new Object();
+    }
+
+    return {
+        getInstance : function(){
+            if(!instance){
+                instance = createNewObject();
+            }
+            return instance;
+        }
+    }
+}
+
+- This design pattern makes sure that only once instance is created.
+- Real world example is database connection.
+
+
+2) Factory design Pattern.
+
+More control on customising the item.

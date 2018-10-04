@@ -1,0 +1,151 @@
+- Once we add all the functions to a file called index.js. It is accessible globally
+in the browser.
+
+Problem:
+The problem with the above approach is that we are messing the global namespace.
+What if there is already a function or object with that namespace present globally.
+Then that would be a additional problem.
+
+Solution:
+In order to overcome this approach we use two design pattern approaches.
+
+1) The object design pattern
+
+- Move all the global methods declared in the index.js file to a object literal.
+- This is the most simplest pattern to not pollute the global namespace.
+- ex
+
+Prev in index.js file
+
+var a = 1, b=2
+function method1 (){}
+
+var objliteralPattern = {
+    a:1,
+    b:1,
+    method1: function(){
+
+    },
+}
+
+
+
+2) The name space design pattern
+
+-- In the above case we have created an object.
+- But there might a chance that someone might overwrite it.
+- In order to avoid that . We have to have our namespace very long and unique.
+- So that It is not being polluted.
+- We can give a domain name.
+ex: our object could be named as com.vijay.india = {
+
+}
+
+when we define an object like that . We have to know that we use a dot notation
+infront of vijay. Therefore we expect com to be an object.
+
+var com = com || {}
+com.vijay = com.vijay || {}
+com.vijay.india = com.vijay.india || {}
+
+
+3) The module Design Pattern.
+
+- This mainly helps us to maintain real privacy control.
+- Have a clear public api.
+- True Encapsulation.
+
+ex :
+
+var moduledesignPatter = (function(){
+    have all private variables.
+    var private1;
+    var private2;
+    return {
+        publicMethod1 :function(){
+
+        },
+        publicMethod2 : function(){
+
+        },
+    }
+})();
+
+Advantages :
+- We are not exposing all the methods outside.
+- We are using IIFE to create a scope for us that has all the variables in its scope.
+- we expose public methods outside. That could be accessible from this module.
+- The inside exposed module variables will have access to the private members.
+
+Disadvantages.
+- One disadvantage is that the private members cannot interact with the public members.
+- In order to over come this setting we introduce a new pattern. The Module reveal design pattern.
+
+
+4) Module reveal design pattern.
+
+- This pattern is the same as the module design pattern but here.
+- Instead of returning the public methods itself we distinugish between public and
+private members and rewrite them as follows.
+
+
+var moduledesignPattern = (function(){
+    have all private variables.
+    var _private1;
+    var _private2;
+
+    function publicMethod1 () {
+
+    }
+
+    function publicMethod2 () {
+
+        }
+    return {
+
+        publicMethod2 : publicMethod2,
+        publicMethod1 : publicMethod1,
+    }
+})();
+
+
+- In the above pattern all the private members have access to the public members.
+- But we changed our naming convention. So that it helps us distinguish between
+private and public members.
+
+To Note: -
+
+In the above pattern aslo. We are exposing the variable moduledesignPattern as a
+global variable. and we dont want to do that because we might overwrite this.so
+in order to get pure abstraction and not deal with over writting.
+
+we wrap tha entire code in an iife. for example.
+
+(function (window)
+var moduledesignPattern = (function(){
+    have all private variables.
+    var _private1;
+    var _private2;
+
+    function publicMethod1 () {
+
+    }
+
+    function publicMethod2 () {
+
+        }
+    return {
+
+        publicMethod2 : publicMethod2,
+        publicMethod1 : publicMethod1,
+    }
+
+    // call the public method1 here.
+    // call the public method2 here.
+
+   // check if any methods from this module needs to be exposed globally,
+   if(!window.publicMethod2) window.publicMethod2 = publicMethod2
+})(window);
+
+No everything in our module is private. We have the control here.
+

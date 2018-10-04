@@ -19,14 +19,14 @@ Question
 -  Check if a tree is a Binary Search Tree.
 -  Bottom View.
 -  Check if a Value is contained in a Binary Search Tree.
+-  Print the left height and right height of each node.
 -  Check if the tree is a balanced tree.
 -  find the Maximum depth of a Binary Search Tree.
 -  Check if two nodes are cousins.
-
-// -- To Continue -- Pointer
 - reverse a each children in a binary tree. Left should be right and right should be left.
 find if.
--  Print the Bottom View of a Binary Search Tree. -- Validate bottom view with various inputs.  - This is done.
+
+// -- To Continue -- Pointer=
 -  Lowest Common Ancestor.
 -  Print Ancestors of a node.
 -  Print Neighbours.
@@ -930,6 +930,7 @@ BinarySearchTree.prototype.InverseTree = function(){
 
 BinarySearchTree.prototype.InvertTree = function (){
   function traversal(root){
+      // I dont need this check.
       if(root === null){
           return;
       }
